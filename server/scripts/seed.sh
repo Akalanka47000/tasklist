@@ -1,0 +1,1 @@
+npx migrate-mongo $@ --file='../src/database/config/seeds.ts' 

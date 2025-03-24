@@ -1,0 +1,15 @@
+{
+    "name": "@types/tasklist",
+    "version": "0.0.0",
+    "description": "Typescript types for all Tasklist system components",
+    "private": true,
+    "main": "src/index.d.ts",
+    "types": "src/index.d.ts",
+    "scripts": {
+      "lint": "sh ../../scripts/lint.sh"
+    },
+    "dependencies": {
+      "@shared/constants": "workspace:*"
+     }
+  }
+  

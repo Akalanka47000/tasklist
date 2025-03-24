@@ -1,0 +1,38 @@
+{
+  "name": "tasklist",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "NODE_ENV=development turbo run dev",
+    "start": "NODE_ENV=production turbo run start",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "format": "npx prettier --write  --loglevel=error \"**/*.{js,ts,tsx,md}\"",
+    "prepare": "lefthook install"
+  },
+  "dependencies": {
+    "lodash": "4.17.21"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "17.4.2",
+    "@commitlint/config-conventional": "17.4.2",
+    "@ianvs/prettier-plugin-sort-imports": "4.2.1",
+    "@types/bun": "^1.2.4",
+    "@types/lodash": "4.17.6",
+    "@types/tasklist": "workspace:*",
+    "@typescript-eslint/eslint-plugin": "6.16.0",
+    "@typescript-eslint/parser": "6.16.0",
+    "eslint": "8.33.0",
+    "eslint-config-custom": "workspace:*",
+    "lefthook": "1.5.5",
+    "node-mocks-http": "1.14.0",
+    "prettier": "3.5.2",
+    "turbo": "1.11.3"
+  },
+  "packageManager": "pnpm@9.6.0"
+}

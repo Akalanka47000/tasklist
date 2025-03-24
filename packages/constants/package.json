@@ -1,0 +1,16 @@
+{
+  "name": "@shared/constants",
+  "version": "0.0.0",
+  "description": "A collection of constants used in the application",
+  "private": true,
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./enums": "./src/enums/index.ts",
+    "./patterns": "./src/patterns.ts"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "lint": "sh ../../scripts/lint.sh"
+  }
+}

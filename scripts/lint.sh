@@ -1,0 +1,1 @@
+npx eslint --cache --ext js,ts,jsx,tsx --fix .
