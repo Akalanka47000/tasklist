@@ -5,12 +5,22 @@
   "private": true,
   "main": "src/index.ts",
   "exports": {
-    ".": "./src/index.ts",
-    "./enums": "./src/enums/index.ts",
-    "./patterns": "./src/patterns.ts"
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./dist/index.js"
+    },
+    "./enums": {
+      "import": "./src/enums/index.ts",
+      "require": "./dist/enums/index.js"
+    },
+    "./patterns": {
+      "import": "./src/patterns/index.ts",
+      "require": "./dist/patterns/index.js"
+    }
   },
   "sideEffects": false,
   "scripts": {
-    "lint": "sh ../../scripts/lint.sh"
+    "lint": "sh ../../scripts/lint.sh",
+    "build": "node ../../scripts/esbuild.config.js"
   }
 }

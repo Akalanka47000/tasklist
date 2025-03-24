@@ -4,18 +4,19 @@ This is a [Turborepo](https://turbo.build/repo) designed to house all components
 
 </br>
 
-## [API Documentation](https://documenter.getpostman.com/view/32343835/2sAYdhKqVB)
+## [API Documentation](https://documenter.getpostman.com/view/32343835/2sAYkKGcHH)
 
 ## File Structure
 
-- client - Frontend application for Finance digest
+- client - Frontend React application for TaskList
 - packages - All shared packages
   - config-eslint - ESLint configurations
   - constants - Common constants
   - types - Common type definitions
-- server - Backend service for Finance digest
+- server - Backend service for TaskList
 - commitlint.config.js - Commitlint configuration file
 - lefthook.yml - Lefthook configuration file
+- pnpm-workspace.yaml - Configures the workspaces so that PNPM can work properly
 - tsconfig.json - Base TypeScript configuration file
 - turbo.json - Turbo configuration file
 
@@ -32,11 +33,14 @@ This is a [Turborepo](https://turbo.build/repo) designed to house all components
 ## Commands
 
 - `pnpm install` - Installs all dependencies for all workspaces
-- `pnpm dev` - Runs a development server for both client and server
+- `pnpm dev` - Starts both client and server in dev mode
+- `pnpm start` - Builds and starts both client and server
 
-## Running migrations
+## Running migrations and seeders
 
-- `pnpm migrate --filter server` - Runs migrations for the server workspace, or you could navigate to the server workspace and run `pnpm migrate`
+- To run migrations - Navigate to the server workspace and run `pnpm migrate up` or `pnpm seed up`.
+
+- To Rollback - Navigate to the server workspace and run `pnpm migrate down` or `pnpm seed down`
 
 </br>
 

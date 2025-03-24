@@ -20,6 +20,7 @@ export const verify = (token: string, ignoreExpiry: boolean = false) => {
 
 export const generateTokens = (user: IUser) => {
   delete user.password;
+  delete user.last_login_time;
   const accessToken = jwt.sign(JSON.parse(JSON.stringify(user)), config.JWT_SECRET, {
     expiresIn: config.ACCESS_TOKEN_EXPIRY
   });

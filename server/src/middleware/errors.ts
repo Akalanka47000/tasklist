@@ -17,10 +17,18 @@ export const errorHandler = (err, _req, res, next) => {
       if (!res.errorLogged) logger.error(err.message, { details: message });
       return res.status(422).json({ message });
     }
-  } else if (err.code === '23505') {
-    const key = err.detail.match(/\(([^)]+)\)/)[1];
-    const value = err.detail.match(/=\(([^)]+)\)/)[1];
-    return res.status(400).json({ message: `The ${key} ${value} is already taken` });
+  } else if ((err.name === 'MongoServerError' || err.name === 'MongoBulkWriteError') && err.code === 11000) {
+    if (err.name === 'MongoBulkWriteError') {
+      return res.status(400).json({ message: `A resource that you're trying to create already exists on the server` });
+    }
+    const key = Object.keys(err.keyValue)[0];
+    return res
+      .status(400)
+      .json({ message: `The ${key} ${!err.hexEncoded ? err.keyValue[key] : 'you entered'} is already taken` });
+  } else if (err.name === 'VersionError') {
+    return res.status(409).json({
+      message: 'The resource you are trying to update has been modified in the background. Please refresh and try again'
+    });
   } else {
     if (!res.errorLogged) logger.error(err.message, err);
   }

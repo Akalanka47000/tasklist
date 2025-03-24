@@ -1,12 +1,8 @@
 import { regex } from '@shared/constants';
 import { Joi } from 'celebrate';
+import { optionalSchema } from '@/utils';
 
-export const loginSchema = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.string().required()
-});
-
-export const registerSchema = Joi.object({
+export const createUserSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string()
@@ -19,3 +15,5 @@ export const registerSchema = Joi.object({
       })
     )
 });
+
+export const updateUserSchema = optionalSchema(createUserSchema);

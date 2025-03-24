@@ -15,4 +15,5 @@ export const headers = {
 
 export const ctxHeaders = 'headers';
 export const ctxAuthorizerError = 'authorizerError';
+export const ctxCorrelationId = 'correlationId';
 export const ctxUser = 'user';

@@ -1,7 +1,7 @@
 import os from 'os';
 import { Response } from 'express';
-import context from 'express-http-context';
-import { headers } from '@shared/constants';
+import { default as context } from 'express-http-context';
+import { ctxCorrelationId, headers } from '@shared/constants';
 
 /**
  * @description Middleware function used to add the hostname and correlation id to the response headers
@@ -12,7 +12,7 @@ import { headers } from '@shared/constants';
 export const responseInterceptor = (_req, res, next) => {
   if (res.headersSent) return;
   res.set(headers.hostName, os.hostname());
-  res.set(headers.correlationId, context.get('correlationId'));
+  res.set(headers.correlationId, context.get(ctxCorrelationId));
   next();
 };
 

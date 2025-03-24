@@ -1,8 +1,10 @@
+// prettier-ignore
+import 'dotenv/config';
 import { default as crypto } from 'crypto';
 import { default as fs } from 'fs';
 import { default as express, NextFunction, Request, Response } from 'express';
 import { default as context } from 'express-http-context';
-import { headers } from '@shared/constants';
+import { ctxCorrelationId, headers } from '@shared/constants';
 import { moduleLogger } from '@sliit-foss/module-logger';
 import { default as stack } from 'callsite';
 import { default as compression } from 'compression';
@@ -15,9 +17,9 @@ import * as database from '@/database/mongo';
 import { locales } from '@/locales';
 import { errorHandler, expressHealth, httpLogger, rateLimiter, responseInterceptor, sentinel } from '@/middleware';
 
-await database.connect();
+database.connect();
 
-const service = 'Finance-Digest-Service';
+const service = 'Todo Service';
 
 const logger = moduleLogger('Server');
 
@@ -44,7 +46,7 @@ app.use(
 app.use(context.middleware as any);
 
 app.use((req: Request, _res: Response, next: NextFunction) => {
-  context.set('correlationId', req.headers[headers.correlationId] ?? crypto.randomBytes(16).toString('hex'));
+  context.set(ctxCorrelationId, req.headers[headers.correlationId] ?? crypto.randomBytes(16).toString('hex'));
   next();
 });
 
@@ -71,22 +73,25 @@ const routes = express.Router();
 
 /* Automatically discovers and mounts all routes from the modules directory */
 const root = stack()
-  .find((site) => site.getFileName().endsWith('server.ts'))
+  .find((site) => {
+    const fileName = site.getFileName();
+    return fileName.endsWith('server.ts') || fileName.endsWith('server.js');
+  })
   ?.getFileName()
-  ?.replace('/server.ts', '')
-  ?.replace('\\server.ts', '');
+  ?.replace(/[\\/](server)\.(ts|js)$/, '');
 fs.readdirSync(`${root}/modules`)?.forEach((module) => {
-  if (module.startsWith('_')) return;
+  if (module.startsWith('_')) return; // Ignore private routes
   fs.readdirSync(`${root}/modules/${module}/api`)?.forEach((v) => {
     routes.use(`/${v}/${module}`, require(`${root}/modules/${module}/api/${v}/controller`).default);
   });
 });
+/* End of route discovery */
 
 router.use(['/api', '/'], rateLimiter, httpLogger, sentinel, routes);
 
 app.use(responseInterceptor);
 
-app.use([`/${service.toLowerCase().split(' ')[0]}-svc`, '/'], router);
+app.use('/', router);
 
 app.all('*', (_req, res) => {
   res.status(404).send();

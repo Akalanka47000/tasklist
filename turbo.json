@@ -8,11 +8,13 @@
     "dev": {
       "cache": false
     },
-    "start": {
-      "cache": false
-    },
     "test": {},
     "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "start": {
+      "dependsOn": ["build"],
       "cache": false
     }
   }

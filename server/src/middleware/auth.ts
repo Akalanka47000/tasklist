@@ -63,8 +63,7 @@ export const sentinel = asyncHandler(async (req: Request, res: Response) => {
   }
 
   req.user = user;
-  req.token = token;
-  req.headers[headers.userId] = user?.id;
+  req.headers[headers.userId] = user?._id;
   req.headers[headers.userEmail] = user?.email;
 
   context.set(ctxUser, user);

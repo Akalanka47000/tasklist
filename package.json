@@ -8,6 +8,7 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "turbo run build",
     "dev": "NODE_ENV=development turbo run dev",
     "start": "NODE_ENV=production turbo run start",
     "lint": "turbo run lint",

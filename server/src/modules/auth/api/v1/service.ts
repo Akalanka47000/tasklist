@@ -3,13 +3,13 @@ import { Blacklist, errors, generateTokens } from '@/modules/auth/utils';
 import { createUser, updateUserById } from '@/modules/users/api/v1/service';
 import { getUserByEmail } from '@/modules/users/repository';
 
-export const login = async ({ email, password }: { email: string; password: string }) => {
-  const user = await getUserByEmail(email, true);
+export const login = async ({ email, password }: Pick<IUser, 'email' | 'password'>) => {
+  const user = await getUserByEmail(email);
   if (!user) throw errors.invalid_credentials;
   if (!user.password || !bcrypt.compareSync(password, user.password)) {
     throw errors.invalid_credentials;
   }
-  updateUserById(user.id, { last_login_time: new Date() });
+  updateUserById(user._id, { last_login_time: new Date().toISOString() });
   return {
     user,
     ...generateTokens(user)
