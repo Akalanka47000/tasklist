@@ -1,3 +1,4 @@
+import { RedirectIfAuthenticated } from '@/components/auth';
 import { RegisterForm } from '@/components/auth/register';
 
 export function Register() {
@@ -11,4 +12,4 @@ export function Register() {
   );
 }
 
-export default Register;
+export default RedirectIfAuthenticated(Register);

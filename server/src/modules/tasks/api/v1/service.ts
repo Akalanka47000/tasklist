@@ -5,7 +5,7 @@ import { RetrievalOptions } from 'mongoose';
 import { ctxTask } from '../../constants';
 import * as repository from '../../repository';
 import { errors } from '../../utils';
-import { RecurrenceManager } from '../../workers/recurrence-manager';
+import { RecurrenceManager } from '../../workers/recurrence';
 
 const layer = 'repository';
 

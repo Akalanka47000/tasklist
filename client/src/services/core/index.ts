@@ -1,5 +1,6 @@
 import { headers } from '@shared/constants';
 import { default as axios } from 'axios';
+import { resetAuthStore } from '@/store/auth';
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -36,7 +37,9 @@ export function formatError(error: any) {
 instance.interceptors.response.use(
   (res) => res.data,
   async (error: any) => {
-    return Promise.reject(formatError(error));
+    const formattedError = formatError(error);
+    if (formattedError.status === 401) resetAuthStore();
+    return Promise.reject(formattedError);
   }
 );
 

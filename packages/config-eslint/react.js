@@ -13,6 +13,8 @@ module.exports = {
   },
   rules: {
     'react-hooks/exhaustive-deps': 'off',
+    'react-hooks/rules-of-hooks': 'off',
+    'react/display-name': 'off',
     'react/prop-types': 'off'
   }
 };

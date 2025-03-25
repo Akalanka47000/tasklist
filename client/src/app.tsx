@@ -1,4 +1,4 @@
-import { Toaster } from '@/components';
+import { Layout, Toaster } from '@/components';
 import Pages from './pages';
 import Providers from './providers';
 
@@ -6,7 +6,9 @@ function App() {
   return (
     <>
       <Providers>
-        <Pages />
+        <Layout>
+          <Pages />
+        </Layout>
       </Providers>
       <Toaster
         richColors
