@@ -18,7 +18,7 @@ export const getAllTasks = ({ page, limit, ...options }: mongoose.RetrievalOptio
   return pipeline;
 };
 
-export const getTaskById = async (id: string, include: string[] = ['dependencies']) => {
+export const getTaskById = async (id: string, include: string[] = ['dependencies']): Promise<IDetailedTask> => {
   const task = head(
     await Task.aggregate([
       Task.aggregateUtils.match({ _id: new mongoose.Types.ObjectId(id) }),

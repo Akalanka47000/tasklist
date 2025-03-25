@@ -20,7 +20,11 @@ export const getTasks = (retrievalOptions: RetrievalOptions, user: IUser) => {
   return traced[layer](repository.getAllTasks)(retrievalOptions, user);
 };
 
-export const getTaskById = (id: string) => repository.getTaskById(id);
+export const getTaskById = (id: string, inclusions?: string) => {
+  const include = new Set(['dependencies']);
+  inclusions?.split(',').forEach((i) => include.add(i));
+  return repository.getTaskById(id, Array.from(include));
+};
 
 export const updateTaskById = (id: string, data: Partial<ITask>) => {
   const existingTask: IDetailedTask = context.get(ctxTask);

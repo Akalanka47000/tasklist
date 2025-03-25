@@ -4,18 +4,18 @@ import { asyncHandler } from '@sliit-foss/functions';
 import { forbiddenRouteError } from '@/middleware';
 import { ctxTask } from '@/modules/tasks/constants';
 import { errors } from '@/modules/tasks/utils';
-import * as repository from '../../../repository';
+import { getTaskById } from '../service';
 
 /**
  * @description Checks if the task being accessed is created by the user and restricts access otherwise.
  */
 export const requireSelf = asyncHandler(async (req: Request) => {
-  const include = new Set(['dependencies']);
-  (req.query.include as string)?.split(',').forEach((i) => {
-    include.add(i);
-  });
-  const task = await repository.getTaskById(req.params.id, Array.from(include));
+  const task = await getTaskById(req.params.id, req.query.include as string);
   if (!task) throw errors.task_not_found;
-  if (task.user.toString() !== req.user?._id) throw forbiddenRouteError;
+  if (
+    task.user.toString() !== req.user._id.toString() &&
+    (task.user as IUser)._id?.toString() !== req.user._id.toString()
+  )
+    throw forbiddenRouteError;
   context.set(ctxTask, task);
 });

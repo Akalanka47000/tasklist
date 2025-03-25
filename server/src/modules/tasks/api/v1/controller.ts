@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import { default as context } from 'express-http-context';
 import { traced, tracedAsyncHandler } from '@sliit-foss/functions';
 import { default as filterQuery } from '@sliit-foss/mongoose-filter-query';
 import { celebrate, Segments } from 'celebrate';
@@ -6,6 +7,7 @@ import { cache, protect, toSuccess } from '@/middleware';
 import { generateTokens, setTokenCookies } from '@/modules/auth/utils';
 import { createUser as createGuestUser } from '@/modules/users/repository';
 import { getAllSchema, objectIdSchema } from '@/utils';
+import { ctxTask } from '../../constants';
 import { requireSelf } from './middleware';
 import { createTaskSchema, updateTaskSchema } from './schema';
 import * as service from './service';
@@ -43,10 +45,10 @@ task.get(
   protect,
   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
   requireSelf,
-  tracedAsyncHandler(async function getTaskById(req: Request, res: Response) {
+  tracedAsyncHandler(function getTaskById(req: Request, res: Response) {
     req.apicacheGroup = req.params.id;
-    const data = await service.getTaskById(req.params.id);
-    return toSuccess({ res, data, message: 'Task fetched successfully!' });
+    const existingTask: IDetailedTask = context.get(ctxTask);
+    return toSuccess({ res, data: existingTask, message: 'Task fetched successfully!' });
   })
 );
 
