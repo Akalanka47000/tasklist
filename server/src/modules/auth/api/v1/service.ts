@@ -24,9 +24,9 @@ export const register = (user: IUser, existingUser?: IUser) => {
     };
   };
   if (existingUser) {
-    return updateUserById(existingUser._id, user).then(next)
+    return updateUserById(existingUser._id, user).then(next);
   }
-  return createUser(user).then(next)
+  return createUser(user).then(next);
 };
 
 export const logout = (token: string) => {

@@ -1,4 +1,4 @@
-import { Priority, RecurringInterval, TaskStatus } from "@shared/constants";
+import { Priority, RecurringInterval, TaskStatus } from '@shared/constants';
 
 declare global {
   interface ITask {
@@ -15,4 +15,4 @@ declare global {
   }
 }
 
-export { };
+export {};

@@ -4,7 +4,9 @@ import { optionalSchema } from '@/utils';
 
 export const createTaskSchema = Joi.object({
   title: Joi.string().required(),
-  priority: Joi.number().valid(...Object.values(Priority)).required(),
+  priority: Joi.number()
+    .valid(...Object.values(Priority))
+    .required(),
   recurring_interval: Joi.string().valid(...Object.values(RecurringInterval)),
   dependencies: Joi.array().items(Joi.objectId())
 });

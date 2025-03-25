@@ -3,12 +3,12 @@ import { traced, tracedAsyncHandler } from '@sliit-foss/functions';
 import { default as filterQuery } from '@sliit-foss/mongoose-filter-query';
 import { celebrate, Segments } from 'celebrate';
 import { cache, protect, toSuccess } from '@/middleware';
-import { getAllSchema, objectIdSchema } from '@/utils';
-import { createTaskSchema, updateTaskSchema } from './schema';
-import * as service from './service';
-import { requireSelf } from './middleware';
 import { generateTokens, setTokenCookies } from '@/modules/auth/utils';
 import { createUser as createGuestUser } from '@/modules/users/repository';
+import { getAllSchema, objectIdSchema } from '@/utils';
+import { requireSelf } from './middleware';
+import { createTaskSchema, updateTaskSchema } from './schema';
+import * as service from './service';
 
 const task = express.Router();
 
@@ -29,8 +29,8 @@ task.get(
   filterQuery,
   tracedAsyncHandler(async function getTasks(req: Request, res: Response) {
     if (!req.user) {
-      req.user = await traced(createGuestUser)()
-      const tokens = generateTokens(req.user)
+      req.user = await traced(createGuestUser)();
+      const tokens = generateTokens(req.user);
       setTokenCookies(res, tokens.access_token, tokens.refresh_token);
     }
     const data = await service.getTasks(req.query, req.user);

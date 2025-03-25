@@ -1,6 +1,6 @@
+import { Priority, RecurringInterval, TaskStatus } from '@shared/constants';
 import mongoose from 'mongoose';
 import { audit, AuditType, schemaOptions } from '@/database/mongo';
-import { Priority, RecurringInterval, TaskStatus } from '@shared/constants';
 
 const TaskSchema = new mongoose.Schema(
   {
