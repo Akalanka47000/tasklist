@@ -9,13 +9,7 @@ import { getUserById } from '@/modules/users/repository';
 
 export const forbiddenRouteError = createError(403, 'Route forbidden');
 
-const whitelistedRoutes = [
-  '/v1/auth/login',
-  '/v1/auth/register',
-  '/system/health',
-  '/system/liveness',
-  '/system/readiness'
-];
+const whitelistedRoutes = ['/v1/auth/login', '/system/health', '/system/liveness', '/system/readiness'];
 
 export const sentinel = asyncHandler(async (req: Request, res: Response) => {
   if (process.env.SERVICE_REQUEST_KEY && req.headers[headers.serviceRequestKey] === process.env.SERVICE_REQUEST_KEY)

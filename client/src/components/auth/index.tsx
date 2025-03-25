@@ -6,7 +6,7 @@ export function RedirectIfAuthenticated(Component: React.ElementType) {
   return function () {
     const profile = useAuthStore((state) => state.profile);
     const location = useLocation();
-    if (profile) {
+    if (profile?.email) {
       return <Navigate to={ROUTE_HOME} state={{ from: location }} replace />;
     } else {
       return <Component />;

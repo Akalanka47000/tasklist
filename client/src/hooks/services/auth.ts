@@ -9,7 +9,7 @@ export function useGetProfile() {
     queryKey: ['auth', profile?._id],
     queryFn: () => {
       return authService.current().then((profile) => {
-        if (profile.data.email) setProfile(profile.data);
+        setProfile(profile.data);
         return profile.data;
       });
     },

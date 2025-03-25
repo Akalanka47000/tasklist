@@ -31,7 +31,7 @@ export function Header({ className, ...props }: HTMLProps<HTMLHeadElement>) {
 
   return (
     <header
-      className={cn('w-full h-18 px-8 sm:px-12 flex justify-between items-center bg-black', className)}
+      className={cn('w-full h-24 px-8 sm:px-10 flex justify-between items-center bg-black', className)}
       {...props}>
       <Link to={ROUTE_HOME}>
         <h3 className="text-lg md:text-2xl tracking-wider">Task List</h3>
@@ -44,8 +44,8 @@ export function Header({ className, ...props }: HTMLProps<HTMLHeadElement>) {
           <Button
             className="w-36 h-8 sm:h-[2.25rem]"
             loading={logout.isPending}
-            onClick={profile ? (logout.mutate as any) : onLogin}>
-            {profile ? 'Logout' : 'Login'}
+            onClick={profile?.email ? (logout.mutate as any) : onLogin}>
+            {profile?.email ? 'Logout' : 'Login'}
           </Button>
         ))}
     </header>

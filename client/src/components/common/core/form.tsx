@@ -63,7 +63,7 @@ const FormItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
 
     return (
       <FormItemContext.Provider value={{ id }}>
-        <div ref={ref} className={cn('space-y-2', className)} {...props} />
+        <div ref={ref} className={cn('flex flex-col gap-1', className)} {...props} />
       </FormItemContext.Provider>
     );
   }
@@ -73,7 +73,6 @@ FormItem.displayName = 'FormItem';
 const FormLabel = React.forwardRef<HTMLLabelElement, React.HTMLProps<HTMLLabelElement> & { required?: boolean }>(
   ({ className, ...props }, ref) => {
     const { error, formItemId } = useFormField();
-
     return (
       <Label
         ref={ref}

@@ -1,6 +1,6 @@
 import { headers } from '@shared/constants';
 import { default as axios } from 'axios';
-import { resetAuthStore } from '@/store/auth';
+import { resetAuthStore, useAuthStore } from '@/store/auth';
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -12,6 +12,11 @@ instance.defaults.headers.post['Content-Type'] = 'application/json';
 instance.interceptors.request.use((req) => {
   if (typeof window !== 'undefined') {
     req.headers[headers.correlationId] = window.crypto.randomUUID();
+    const profile = useAuthStore.getState().profile;
+    if (profile) {
+      req.headers[headers.userId] = profile._id;
+      req.headers[headers.userEmail] = profile.email;
+    }
   }
   return req;
 });
