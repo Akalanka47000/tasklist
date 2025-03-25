@@ -1,7 +1,7 @@
 {
     "name": "@types/tasklist",
     "version": "0.0.0",
-    "description": "Typescript types for all Tasklist system components",
+    "description": "Global Typescript definitions for all Tasklist system components",
     "private": true,
     "main": "src/index.d.ts",
     "types": "src/index.d.ts",

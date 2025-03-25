@@ -1,25 +1,35 @@
-FROM oven/bun:1.2.2-alpine AS runner
+################################
+# Cleans the monorepository workspace leaving only the server related files
+
+FROM node:18-alpine as cleaner 
 
 WORKDIR /app
 
-RUN apk add --no-cache --update jq redis
+COPY . .
 
-COPY patches ./patches
+RUN yarn global add turbo pnpm
 
-COPY packages ./packages
+RUN turbo prune --scope=$service --docker
 
-COPY server ./server
+################################
+# Builds and runs the application
 
-COPY package.json bun.lock ./
+FROM node:18-alpine as runner
 
-RUN sh ./server/scripts/prune.sh server
+WORKDIR /app
 
-RUN echo -e "[install]\ndev=false" > bunfig.toml
+RUN yarn global add pnpm
 
-RUN bun install --ignore-scripts
+COPY .gitignore .gitignore
 
-EXPOSE 8080
+COPY --from=cleaner /app/out/json/ .
+COPY --from=cleaner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=cleaner /app/scripts ./scripts
 
-# Not a good practice to run redis in the same container as the server
-# But for the sake of simplicity of this deployment, we are doing it here
-CMD ["sh", "-c",  "redis-server --daemonize yes && cd ./server && bun start"]
+RUN pnpm install --ignore-scripts
+
+COPY --from=cleaner /app/out/full/ .
+
+RUN pnpm build --filter=server
+
+CMD ["sh", "-c",  "pnpm start --filter=server"]
