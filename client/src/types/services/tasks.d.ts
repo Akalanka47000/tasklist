@@ -1,4 +1,3 @@
-export interface ICreateTaskResponse {
-  message: string;
-  data: ITask;
-}
+export type ICreateTaskResponse = IAPIResponse<ITask>;
+
+export type IUpdateTaskResponse = IAPIResponse<ITask>;

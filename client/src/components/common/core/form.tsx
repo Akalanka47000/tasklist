@@ -1,5 +1,3 @@
-'use client';
-
 import * as React from 'react';
 import { Controller, ControllerProps, FieldPath, FieldValues, FormProvider, useFormContext } from 'react-hook-form';
 import { Label } from '@/components';
@@ -79,7 +77,7 @@ const FormLabel = React.forwardRef<HTMLLabelElement, React.HTMLProps<HTMLLabelEl
     return (
       <Label
         ref={ref}
-        className={cn('text-sm ml-1.5', error && 'text-destructive', className)}
+        className={cn('text-sm', error && 'text-destructive', className)}
         htmlFor={formItemId}
         {...props}
       />

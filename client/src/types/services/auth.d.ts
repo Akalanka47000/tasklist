@@ -1,31 +1,17 @@
-import { RequestConfig } from './common';
+import { RequestConfig, RequestCreateConfig } from './common';
 
-export interface LoginConfig extends RequestConfig {
-  data: any;
-}
+export interface LoginConfig extends RequestCreateConfig {}
 
-export interface ILoginResponse {
-  message: string;
-  data: {
-    user: IUser;
-  };
-}
+export type ILoginResponse = IAPIResponse<IUser>;
 
-export interface RegisterConfig extends RequestConfig {
-  data: any;
-}
+export interface RegisterConfig extends RequestCreateConfig {}
 
 export interface IRegisterResponse extends ILoginResponse {}
 
 export interface CurrentConfig extends RequestConfig {}
 
-export interface ICurrentUserResponse {
-  message: string;
-  data: IUser;
-}
+export type ICurrentUserResponse = IAPIResponse<IUser>;
 
 export interface LogoutConfig extends RequestConfig {}
 
-export interface ILogoutResponse {
-  message: string;
-}
+export type ILogoutResponse = IAPIResponse;

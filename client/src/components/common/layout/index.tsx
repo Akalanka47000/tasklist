@@ -5,10 +5,17 @@ import { Header } from './header';
 
 export function Layout({ className, children, ...props }: HTMLProps<HTMLElement>) {
   return (
-    <main className={cn('w-full overflow-x-hidden min-h-svh flex justify-center items-center', className)} {...props}>
+    <>
       <Header />
-      {children}
+      <main
+        className={cn(
+          'w-full overflow-x-hidden min-h-[92svh] flex flex-col justify-center items-center font-inter',
+          className
+        )}
+        {...props}>
+        {children}
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

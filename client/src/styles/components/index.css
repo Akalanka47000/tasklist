@@ -1,1 +1,7 @@
-@import "./typography.css"
+@import "./typography.css";
+
+@layer components {
+    .card {
+        @apply flex flex-col gap-6 max-w-lg p-10 sm:p-12 border-2 rounded-md;
+    }
+}

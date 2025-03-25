@@ -1,9 +1,13 @@
-@layer components {
-    .text-high-importance {
-        @apply max-w-3xl text-4xl sm:text-5xl md:text-6xl text-center px-6 sm:px-12 uppercase
+@layer base {
+    h1 {
+        @apply text-4xl md:text-5xl text-center uppercase;
     }
 
-    .text-form-title {
-        @apply text-5xl text-center mb-10;
+    h2 {
+        @apply text-3xl md:text-4xl text-center uppercase;
+    }
+
+    h3 {
+        @apply text-2xl md:text-3xl text-center uppercase;
     }
 }

@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { Button, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@/components';
 import { ROUTE_HOME, ROUTE_LOGIN } from '@/constants';
 import { authService } from '@/services';
+import { useAuthStore } from '@/store/auth';
 import { filterAndNotifyError } from '@/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
@@ -12,6 +13,8 @@ import { default as FormSchema } from './schema';
 
 export function RegisterForm() {
   const navigate = useNavigate();
+
+  const setProfile = useAuthStore((state) => state.setProfile);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -28,7 +31,8 @@ export function RegisterForm() {
       return await authService.register({ data });
     },
     onSuccess: (result) => {
-      toast.success(result.data.message);
+      toast.success(result.message);
+      setProfile(result.data);
       navigate(ROUTE_HOME);
     },
     onError: filterAndNotifyError

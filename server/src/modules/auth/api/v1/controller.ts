@@ -47,7 +47,7 @@ auth.post(
   tracedAsyncHandler(async function logout(req: Request, res: Response) {
     await service.logout(req.cookies.access_token);
     clearTokenCookies(res);
-    return toSuccess({ res, message: 'Logout successfull!' });
+    return toSuccess({ res, message: 'Logged out successfully!' });
   })
 );
 

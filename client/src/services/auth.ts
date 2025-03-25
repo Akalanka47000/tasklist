@@ -11,19 +11,19 @@ import type {
 import { instance } from './core';
 
 function login({ v = 'v1', data, options }: LoginConfig) {
-  return instance.post<ILoginResponse>(`/api/${v}/auth/login`, data, options);
+  return instance.post<unknown, ILoginResponse>(`/api/${v}/auth/login`, data, options);
 }
 
 function register({ v = 'v1', data, options }: RegisterConfig) {
-  return instance.post<IRegisterResponse>(`/api/${v}/auth/register`, data, options);
+  return instance.post<unknown, IRegisterResponse>(`/api/${v}/auth/register`, data, options);
 }
 
 function current({ v = 'v1', options }: CurrentConfig = {}) {
-  return instance.get<ICurrentUserResponse>(`/api/${v}/auth/current`, options);
+  return instance.get<unknown, ICurrentUserResponse>(`/api/${v}/auth/current`, options);
 }
 
 function logout({ v = 'v1', options }: LogoutConfig = {}) {
-  return instance.post<ILogoutResponse>(`/api/${v}/auth/logout`, undefined, options);
+  return instance.post<unknown, ILogoutResponse>(`/api/${v}/auth/logout`, undefined, options);
 }
 
 export default {

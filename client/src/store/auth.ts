@@ -15,7 +15,7 @@ export const useAuthStore = create<AuthSlice>()(
   devtools(
     persist(createAuthSlice, {
       name: 'auth-store',
-      partialize: (state) => ({ congratulated: state.profile }),
+      partialize: (state) => ({ profile: state.profile }),
       storage: createJSONStorage(() => localStorage)
     })
   )
