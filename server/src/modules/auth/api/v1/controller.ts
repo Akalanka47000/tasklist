@@ -22,7 +22,7 @@ auth.post(
   '/register',
   celebrate({ [Segments.BODY]: registerSchema }),
   tracedAsyncHandler(async function register(req: Request, res: Response) {
-    const { user, access_token, refresh_token } = await service.register(req.body);
+    const { user, access_token, refresh_token } = await service.register(req.body, req.user);
     setTokenCookies(res, access_token, refresh_token);
     return toSuccess({
       res,

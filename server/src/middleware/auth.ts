@@ -12,7 +12,6 @@ export const forbiddenRouteError = createError(403, 'Route forbidden');
 const whitelistedRoutes = [
   '/v1/auth/login',
   '/v1/auth/register',
-  '/v1/auth/refresh-token',
   '/system/health',
   '/system/liveness',
   '/system/readiness'
@@ -32,7 +31,7 @@ export const sentinel = asyncHandler(async (req: Request, res: Response) => {
     return context.set(ctxAuthorizerError, errors.missing_token);
   }
 
-  let decodedUser;
+  let decodedUser: IUser;
 
   try {
     decodedUser = verify(token);

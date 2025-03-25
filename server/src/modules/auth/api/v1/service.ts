@@ -16,13 +16,17 @@ export const login = async ({ email, password }: Pick<IUser, 'email' | 'password
   };
 };
 
-export const register = (user: IUser) => {
-  return createUser(user).then((user) => {
+export const register = (user: IUser, existingUser?: IUser) => {
+  const next = (user: IUser) => {
     return {
       user,
       ...generateTokens(user)
     };
-  });
+  };
+  if (existingUser) {
+    return updateUserById(existingUser._id, user).then(next)
+  }
+  return createUser(user).then(next)
 };
 
 export const logout = (token: string) => {

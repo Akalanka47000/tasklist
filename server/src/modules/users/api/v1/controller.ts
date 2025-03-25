@@ -34,7 +34,7 @@ user.get(
 user.get(
   '/:id',
   internal,
-  cacheSuccess('60 seconds'),
+  cacheSuccess('30 seconds'),
   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
   tracedAsyncHandler(async function getUserById(req: Request, res: Response) {
     req.apicacheGroup = req.params.id;

@@ -1,7 +1,7 @@
 import { default as mongoose } from 'mongoose';
 import { scrubbable, User } from './api/v1/models';
 
-export const createUser = (user: IUser): Promise<IUser> => {
+export const createUser = (user: Partial<IUser> = {}): Promise<IUser> => {
   user.email &&= user.email.toLowerCase();
   return User.create(user).then((u) => u.cleanse());
 };

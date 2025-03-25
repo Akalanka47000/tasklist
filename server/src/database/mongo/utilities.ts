@@ -29,7 +29,7 @@ export const registerUtilities = <T>(model: mongoose.ExtendedPaginateModel<Model
           const collectionName =
             field?.options?.collection ??
             field?.options?.type?.[0]?.collection ??
-            mongoose.models[field?.options?.ref]?.collection?.name ??
+            mongoose.models[field?.options?.ref ?? field?.options?.type?.[0]?.ref]?.collection?.name ??
             collection;
           if (collectionName && field?.instance !== 'Array') {
             nonArrayFields.push(localField);

@@ -4,6 +4,6 @@
     }
 
     .text-form-title {
-        @apply text-5xl font-noto text-center mb-10;
+        @apply text-5xl text-center mb-10;
     }
 }

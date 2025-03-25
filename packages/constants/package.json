@@ -6,16 +6,19 @@
   "main": "src/index.ts",
   "exports": {
     ".": {
-      "import": "./src/index.ts",
-      "require": "./dist/index.js"
+      "development": "./src/index.ts",
+      "production": "./dist/index.js",
+      "types": "./src/index.ts"
     },
     "./enums": {
-      "import": "./src/enums/index.ts",
-      "require": "./dist/enums/index.js"
+      "development": "./src/enums/index.ts",
+      "production": "./dist/enums/index.js",
+      "types": "./src/enums/index.ts"
     },
     "./patterns": {
-      "import": "./src/patterns/index.ts",
-      "require": "./dist/patterns/index.js"
+      "development": "./src/patterns/index.ts",
+      "production": "./dist/patterns/index.js",
+      "types": "./src/patterns/index.ts"
     }
   },
   "sideEffects": false,

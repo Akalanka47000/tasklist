@@ -4,9 +4,9 @@ export enum TaskStatus {
 }
 
 export enum Priority {
-  Low = 'Low',
-  Medium = 'Medium',
-  High = 'High'
+  Low = 1,
+  Medium = 2,
+  High = 3
 }
 
 export enum RecurringInterval {
