@@ -38,7 +38,7 @@ export class RecurrenceManager {
         break;
 
       case RecurringInterval.Weekly:
-        rule.dayOfWeek = createdTime.getDay(); // 0-6 (Sunday-Saturday)
+        rule.dayOfWeek = createdTime.getDay();
         rule.hour = createdTime.getHours();
         rule.minute = createdTime.getMinutes();
         rule.second = createdTime.getSeconds();

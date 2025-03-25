@@ -21,7 +21,7 @@ database.connect();
 
 const service = 'Todo Service';
 
-const logger = moduleLogger('Server');
+const logger = moduleLogger(service);
 
 const app = express();
 

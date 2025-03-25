@@ -13,6 +13,10 @@ declare global {
     created_at: string;
     updated_at: string;
   }
+
+  interface IDetailedTask extends ITask {
+    dependencies: ITask[];
+  }
 }
 
 export {};

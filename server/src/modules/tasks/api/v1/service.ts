@@ -1,4 +1,5 @@
 import { default as context } from 'express-http-context';
+import { TaskStatus } from '@shared/constants';
 import { traced } from '@sliit-foss/functions';
 import { RetrievalOptions } from 'mongoose';
 import { ctxTask } from '../../constants';
@@ -22,8 +23,11 @@ export const getTasks = (retrievalOptions: RetrievalOptions, user: IUser) => {
 export const getTaskById = (id: string) => repository.getTaskById(id);
 
 export const updateTaskById = (id: string, data: Partial<ITask>) => {
+  const existingTask: IDetailedTask = context.get(ctxTask);
+  if (data.status === TaskStatus.Done && existingTask.dependencies.some((d) => d.status === TaskStatus.NotDone)) {
+    throw errors.dependendant_tasks_not_completed;
+  }
   return traced[layer](repository.updateTaskById)(id, data).then((result) => {
-    const existingTask: ITask = context.get(ctxTask);
     if (result && (existingTask.recurring_interval || data.recurring_interval)) {
       RecurrenceManager.rescheduleTaskCreation(result);
     }
