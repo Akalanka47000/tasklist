@@ -23,7 +23,7 @@ const service = 'Todo Service';
 
 const logger = moduleLogger(service);
 
-const app = express();
+export const app = express();
 
 const router = express.Router();
 
