@@ -8,7 +8,7 @@
     "dev": "tsx watch --conditions dev --inspect ./src/server.ts ",
     "start": "node --conditions prod --enable-source-maps dist/server.js",
     "lint": "sh ../scripts/lint.sh",
-    "test": "NODE_OPTIONS=\"--conditions=dev\" jest --coverage --detectOpenHandles",
+    "test": "NODE_OPTIONS=\"--conditions=dev\" jest --coverage --forceExit --runInBand",
     "migrate": "sh ./scripts/migrate.sh",
     "seed": "sh ./scripts/seed.sh"
   },

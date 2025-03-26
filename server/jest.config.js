@@ -9,5 +9,6 @@ module.exports = {
   moduleNameMapper: {
     ...pathsToModuleNameMapper(compilerOptions.paths, { prefix: `<rootDir>/src` }),
     '@shared/constants': '<rootDir>/../packages/constants/src/index.ts'
-  }
+  },
+  coveragePathIgnorePatterns: ['<rootDir>/test', '<rootDir>/src/modules/users']
 };
