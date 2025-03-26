@@ -1,10 +1,12 @@
 import { taskService } from '@/services';
+import { useAuthStore } from '@/store/auth';
 import { GetPaginatedQueryProps } from '@/types';
 import { keepPreviousData, useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 export function useGetTasks({ page, limit, params = {} }: GetPaginatedQueryProps) {
+  const profile = useAuthStore((state) => state.profile);
   const query = useQuery({
-    queryKey: ['tasks', ...Object.values(params), ...(page ? [page] : [])],
+    queryKey: ['tasks', ...Object.values(params), ...(page ? [page] : []), profile?._id],
     queryFn: () =>
       taskService
         .getTasks({
@@ -24,8 +26,9 @@ export function useGetTasks({ page, limit, params = {} }: GetPaginatedQueryProps
 }
 
 export function useGetInfiniteTasks({ limit, params }: GetPaginatedQueryProps) {
+  const profile = useAuthStore((state) => state.profile);
   return useInfiniteQuery({
-    queryKey: ['tasks', 'infinite-tasks', ...Object.values(params ?? {})],
+    queryKey: ['tasks', 'infinite-tasks', ...Object.values(params ?? {}), profile?._id],
     queryFn: ({ pageParam = 1 }) =>
       taskService
         .getTasks({
