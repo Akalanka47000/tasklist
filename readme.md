@@ -45,6 +45,7 @@ This is a [Turborepo](https://turbo.build/repo) designed to house all components
 - `pnpm install` - Installs all dependencies for all workspaces
 - `pnpm dev` - Starts both client and server in dev mode
 - `pnpm start` - Builds and starts both client and server
+- `pnpm test` - Runs tests suites within both client and server however for readability it is better to execute this one workspace at a time
 
 ## Running migrations and seeders
 

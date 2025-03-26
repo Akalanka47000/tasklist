@@ -40,3 +40,9 @@ Node service for Task List
 - Audits can be viewed at the `audits` collection within the database
 
 </br>
+
+## Tests
+
+- `pnpm test` - First test execution may take some time since it starts 2 docker container for MongoDB and Redis.
+
+</br>
