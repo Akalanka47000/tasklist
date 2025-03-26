@@ -1,13 +1,17 @@
-const { execSync } = require('child_process');
+const fs = require("fs")
 const { build } = require('esbuild');
 const { globPlugin } = require('esbuild-plugin-glob');
 
-execSync('npx rimraf ./dist && mkdir dist');
+const outdir = "./dist";
+
+if (fs.existsSync(outdir)) fs.rmdirSync(outdir)
+
+fs.mkdirSync(outdir)
 
 build({
   entryPoints: ['./src/**/*.ts', './src/**/*.json', './src/**/*.html'],
   bundle: false,
-  outdir: './dist',
+  outdir,
   platform: 'node',
   target: 'node18.0',
   format: 'cjs',

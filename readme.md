@@ -6,6 +6,16 @@ This is a [Turborepo](https://turbo.build/repo) designed to house all components
 
 ## [API Documentation](https://documenter.getpostman.com/view/32343835/2sAYkKGcHH)
 
+</br>
+
+## Quick Setup (With Docker)
+
+- Run `docker compose up` to boostrap and spin a runtime environment
+  - Client - Available at http://localhost:5173
+  - Server - Available at http://localhost:8080
+
+</br>
+
 ## File Structure
 
 - client - Frontend React application for TaskList

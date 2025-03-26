@@ -29,13 +29,14 @@ RUN npm i -g pnpm@9.6.0
 
 COPY --from=cleaner /app/out/full/ .
 COPY --from=cleaner /app/scripts ./scripts
+COPY --from=cleaner /app/turbo.json ./turbo.json
 
 RUN pnpm install --ignore-scripts
 
-COPY --from=cleaner /app/out/full/ .
+RUN pnpm build
 
 WORKDIR /app/client
 
-RUN pnpm build
+EXPOSE 5173
 
 CMD ["sh", "-c",  "pnpm start"]
