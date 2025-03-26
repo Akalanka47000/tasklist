@@ -17,7 +17,11 @@ const priorityVariants = cva('px-[.5rem] py-[.2rem] border text-xs rounded-full 
 
 export function PriorityBadge({ priority }: { priority: Priority }) {
   return (
-    <span className={cn('rounded-full px-2 py-[.15rem] text-xs w-fit', priorityVariants({ variant: priority }))}>
+    <span
+      className={cn(
+        'rounded-full px-2 py-[.15rem] text-xs w-fit cursor-default',
+        priorityVariants({ variant: priority })
+      )}>
       {Priority[priority]}
     </span>
   );

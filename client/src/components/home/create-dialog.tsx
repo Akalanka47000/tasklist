@@ -59,6 +59,7 @@ function CreateOrUpdateDialogContent() {
     },
     onSuccess: (result) => {
       setIsOpen(false);
+      form.reset();
       client.invalidateQueries({ queryKey: ['tasks'] });
       toast.success(result.message);
     },

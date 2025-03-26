@@ -1,5 +1,5 @@
 export interface FilterOption {
-  key: string;
+  key: string | number;
   label: string;
 }
 

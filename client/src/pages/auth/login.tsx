@@ -4,7 +4,7 @@ import { LoginForm } from '@/components/auth/login';
 
 export function Login() {
   return (
-    <div className="container flex justify-center p-10 sm:p-12">
+    <div className="container flex justify-center px-10 sm:px-12 pt-0 sm:pt-0">
       <div className="card w-full">
         <ListTodo className="mx-auto text-md p-2 border-2 rounded-sm" size={50} />
         <div className="w-full flex flex-col justify-center items-center gap-3">

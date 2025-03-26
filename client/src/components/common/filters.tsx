@@ -152,7 +152,7 @@ export function FilterContent({
                     </SelectTrigger>
                     <SelectContent>
                       {filter.options.map((option) => (
-                        <SelectItem key={option.key} value={option.key}>
+                        <SelectItem key={option.key} value={option.key as any}>
                           {option.label}
                         </SelectItem>
                       ))}
@@ -220,7 +220,7 @@ export function Filters({ drawer, definitions, setFilters, ...props }: FilterPro
   return (
     <Drawer direction={isMobile ? 'bottom' : 'right'}>
       <DrawerTrigger asChild>
-        <Button variant="outline" className="w-8 sm:w-10 p-0 sm:p-0 shrink-0">
+        <Button variant="outline" className="w-10 p-0 sm:p-0 shrink-0">
           <Filter className="w-4 h-4" />
         </Button>
       </DrawerTrigger>

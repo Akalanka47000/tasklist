@@ -16,7 +16,8 @@ const statusVariants = cva('px-[.5rem] py-[.2rem] border text-xs rounded-full te
 
 export function StatusBadge({ status }: { status: TaskStatus }) {
   return (
-    <span className={cn('rounded-full px-2 py-[.15rem] text-xs w-fit', statusVariants({ variant: status }))}>
+    <span
+      className={cn('rounded-full px-2 py-[.15rem] text-xs w-fit cursor-default', statusVariants({ variant: status }))}>
       {status}
     </span>
   );

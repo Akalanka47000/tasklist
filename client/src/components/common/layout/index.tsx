@@ -9,7 +9,7 @@ export function Layout({ className, children, ...props }: HTMLProps<HTMLElement>
       <Header />
       <main
         className={cn(
-          'w-full overflow-x-hidden min-h-[92svh] flex flex-col justify-center items-center font-inter',
+          'w-full overflow-x-hidden min-h-[80svh] flex flex-col justify-center items-center font-inter',
           className
         )}
         {...props}>
