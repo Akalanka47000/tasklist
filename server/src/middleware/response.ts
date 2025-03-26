@@ -41,6 +41,5 @@ export const toSuccess = ({
   const responseData = { data, message };
   if (!data) delete responseData.data;
   res.status(status).json(responseData);
-  res.headersSent = true;
   return;
 };

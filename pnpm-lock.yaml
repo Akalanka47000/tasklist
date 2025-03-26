@@ -24,9 +24,6 @@ importers:
       '@ianvs/prettier-plugin-sort-imports':
         specifier: 4.2.1
         version: 4.2.1(prettier@3.5.2)
-      '@types/bun':
-        specifier: ^1.2.4
-        version: 1.2.5
       '@types/lodash':
         specifier: 4.17.6
         version: 4.17.6
@@ -1873,9 +1870,6 @@ packages:
   '@types/body-parser@1.19.5':
     resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
 
-  '@types/bun@1.2.5':
-    resolution: {integrity: sha512-w2OZTzrZTVtbnJew1pdFmgV99H0/L+Pvw+z1P67HaR18MHOzYnTYOi6qzErhK8HyT+DB782ADVPPE92Xu2/Opg==}
-
   '@types/callsite@1.0.34':
     resolution: {integrity: sha512-eglitkkbqiQiijtKsUvOcQm+E6qLMPcggjDJXeqNBnLxdzffRGop2+2QDN/8pHh396/jN5cmIwweNKUqKJ50mQ==}
 
@@ -2026,9 +2020,6 @@ packages:
 
   '@types/whatwg-url@11.0.5':
     resolution: {integrity: sha512-coYR071JRaHa+xoEvvYqvnIHaVqaYrLPbsufM9BF63HkwI5Lgmy2QR8Q5K/lYDYo5AK82wOvSOS0UsLTpTG7uQ==}
-
-  '@types/ws@8.5.14':
-    resolution: {integrity: sha512-bd/YFLW+URhBzMXurx7lWByOu+xzU9+kb3RboOteXYDfW+tr+JZa99OyNmPINEGB/ahzKrEuc8rcv4gnpJmxTw==}
 
   '@types/yargs-parser@21.0.3':
     resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==}
@@ -2348,9 +2339,6 @@ packages:
 
   buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
-
-  bun-types@1.2.5:
-    resolution: {integrity: sha512-3oO6LVGGRRKI4kHINx5PIdIgnLRb7l/SprhzqXapmoYkFl5m4j6EvALvbDVuuBFaamB46Ap6HCUxIXNLCGy+tg==}
 
   bytes@3.0.0:
     resolution: {integrity: sha512-pMhOfFDPiv9t5jjIXkHosWmkSyQbvsgEVNkz0ERHbuLh2T/7j4Mqqpz523Fe8MVY89KC6Sh/QfS2sM+SjgFDcw==}
@@ -7080,10 +7068,6 @@ snapshots:
       '@types/connect': 3.4.38
       '@types/node': 22.13.13
 
-  '@types/bun@1.2.5':
-    dependencies:
-      bun-types: 1.2.5
-
   '@types/callsite@1.0.34': {}
 
   '@types/cls-hooked@4.3.9':
@@ -7268,10 +7252,6 @@ snapshots:
   '@types/whatwg-url@11.0.5':
     dependencies:
       '@types/webidl-conversions': 7.0.3
-
-  '@types/ws@8.5.14':
-    dependencies:
-      '@types/node': 22.13.13
 
   '@types/yargs-parser@21.0.3': {}
 
@@ -7691,11 +7671,6 @@ snapshots:
   buffer-equal-constant-time@1.0.1: {}
 
   buffer-from@1.1.2: {}
-
-  bun-types@1.2.5:
-    dependencies:
-      '@types/node': 22.13.13
-      '@types/ws': 8.5.14
 
   bytes@3.0.0: {}
 

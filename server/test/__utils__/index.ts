@@ -1,3 +1,4 @@
+export * from './auth';
 export * from './docker';
 
 export const waitFor = async (conditionFn: () => Promise<any>, timeout = 5000, interval = 500) => {
