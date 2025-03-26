@@ -23,4 +23,7 @@ export const useAuthStore = create<AuthSlice>()(
 
 const initialState = useAuthStore.getState();
 
-export const resetAuthStore = () => useAuthStore.setState(initialState);
+export const resetAuthStore = () => {
+  useAuthStore.setState(initialState);
+  localStorage.removeItem('auth-store');
+};
