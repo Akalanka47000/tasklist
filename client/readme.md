@@ -27,5 +27,5 @@ React + Vite application for Task List
 ## Basic Commands
 
 - `pnpm dev` - Starts the server in dev mode
-- `pnpm build` - Builds the server 
-- `pnpm start` - Runs the built server 
+- `pnpm build` - Builds the server
+- `pnpm start` - Runs the built server

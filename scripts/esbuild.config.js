@@ -1,12 +1,12 @@
-const fs = require("fs")
+const fs = require('fs');
 const { build } = require('esbuild');
 const { globPlugin } = require('esbuild-plugin-glob');
 
-const outdir = "./dist";
+const outdir = './dist';
 
-if (fs.existsSync(outdir)) fs.rmdirSync(outdir)
+if (fs.existsSync(outdir)) fs.rmdirSync(outdir);
 
-fs.mkdirSync(outdir)
+fs.mkdirSync(outdir);
 
 build({
   entryPoints: ['./src/**/*.ts', './src/**/*.json', './src/**/*.html'],

@@ -319,9 +319,6 @@ importers:
       esbuild-plugin-glob:
         specifier: 2.2.1
         version: 2.2.1(esbuild@0.17.5)
-      rimraf:
-        specifier: 4.1.2
-        version: 4.1.2
       tscpaths:
         specifier: ^0.0.9
         version: 0.0.9
@@ -4119,12 +4116,6 @@ packages:
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     deprecated: Rimraf versions prior to v4 are no longer supported
-    hasBin: true
-
-  rimraf@4.1.2:
-    resolution: {integrity: sha512-BlIbgFryTbw3Dz6hyoWFhKk+unCcHMSkZGrTFVAx2WmttdBSonsdtRlwiuTbDqTKr+UlXIUqJVS4QT5tUzGENQ==}
-    engines: {node: '>=14'}
-    deprecated: Please upgrade to 4.3.1 or higher to fix a potentially damaging issue regarding symbolic link following. See https://github.com/isaacs/rimraf/issues/259 for details.
     hasBin: true
 
   rollup@4.37.0:
@@ -8769,8 +8760,6 @@ snapshots:
   rimraf@3.0.2:
     dependencies:
       glob: 7.2.3
-
-  rimraf@4.1.2: {}
 
   rollup@4.37.0:
     dependencies:
