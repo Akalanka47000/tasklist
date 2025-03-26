@@ -7,14 +7,13 @@ afterAll(closeConnections);
 
 describe('authentication', () => {
   describe('register', () => {
-    test('should throw validation error because name is missing', async (done) => {
+    test('should throw validation error because name is missing', async () => {
       const res = await request(app).post('/api/v1/auth/register').send({
         email: faker.internet.email(),
         password: faker.internet.password()
       });
       expect(res.status).toBe(422);
       expect(res.body.message).toContain('"name" is required');
-      done();
     });
   });
 });

@@ -29,6 +29,6 @@ export const connect = async (options?: mongoose.ConnectOptions) => {
   mongoose.connection.on('reconnected', () => logger.info(`Database reconnected`));
 };
 
-export const disconnect = () => mongoose.disconnect();
+export const disconnect = () => mongoose.connection.close();
 
 export const ping = () => mongoose.connection.db.admin().ping();

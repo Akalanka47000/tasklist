@@ -7,5 +7,9 @@ export const closeConnections = async () => {
 };
 
 export default async () => {
-  await Promise.allSettled([removeDockerContainer('mongo'), removeDockerContainer('redis')]);
+  await new Promise(resolve=>{
+    setTimeout(()=>{
+      Promise.allSettled([removeDockerContainer('mongo'), removeDockerContainer('redis')]).then(resolve)
+    }, 3000)  // Allow 3 seconds for async tasks to complete
+  })
 };
