@@ -55,8 +55,6 @@
     "@types/node-schedule": "2.1.7",
     "@types/redlock": "4.0.7",
     "@types/request-ip": "0.0.41",
-    "esbuild": "0.17.5",
-    "esbuild-plugin-glob": "2.2.1",
     "tscpaths": "^0.0.9",
     "tsx": "4.19.3"
   }
