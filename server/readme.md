@@ -21,8 +21,8 @@ Node service for Task List
 
 ## Basic Commands
 
-- `pnpm dev` - Starts server in dev mode
-- `pnpm build` - Builds the server using
+- `pnpm dev` - Starts the server in dev mode
+- `pnpm build` - Builds the server using [Esbuild](https://esbuild.github.io)
 - `pnpm start` - Runs the built server with node
 
 ## Running migrations and seeders

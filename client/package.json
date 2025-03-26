@@ -6,9 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "start": "npm run preview",
-    "lint": "sh ../scripts/lint.sh",
-    "preview": "vite preview"
+    "start": "vite preview",
+    "lint": "sh ../scripts/lint.sh"
   },
   "dependencies": {
     "@hookform/resolvers": "3.3.4",
