@@ -11,12 +11,10 @@ const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
   setProfile: (profile) => set({ profile })
 });
 
-const name = 'auth-store';
-
 export const useAuthStore = create<AuthSlice>()(
   devtools(
     persist(createAuthSlice, {
-      name,
+      name: 'auth-store',
       partialize: (state) => ({ profile: state.profile }),
       storage: createJSONStorage(() => localStorage)
     })
@@ -27,5 +25,5 @@ const initialState = useAuthStore.getState();
 
 export const resetAuthStore = () => {
   useAuthStore.setState(initialState);
-  localStorage.removeItem(name);
+  localStorage.removeItem('auth-store');
 };
