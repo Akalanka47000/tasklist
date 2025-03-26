@@ -52,6 +52,7 @@
     "@types/compression": "1.7.5",
     "@types/cookie-parser": "1.4.8",
     "@types/cors": "2.8.17",
+    "@types/jest": "29.5.14",
     "@types/migrate-mongo": "10.0.4",
     "@types/node-polyglot": "2.5.0",
     "@types/node-schedule": "2.1.7",
