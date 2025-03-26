@@ -6,7 +6,7 @@ export function useGetProfile() {
   const profile = useAuthStore((state) => state.profile);
   const setProfile = useAuthStore((state) => state.setProfile);
   const query = useQuery({
-    queryKey: ['auth', profile?._id],
+    queryKey: ['auth', profile?.email],
     queryFn: () => {
       return authService.current().then((profile) => {
         setProfile(profile.data);
