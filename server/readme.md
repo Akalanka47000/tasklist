@@ -32,3 +32,11 @@ Node service for Task List
 - `pnpm migrate down` or `pnpm seed down` - Rollbacks migrations or seeds
 
 </br>
+
+## Auditing
+
+- Auditing is managed automatically if enabled at the model level through the `@sliit-foss/mongoose-audit` plugin and provides a detailed description of the changes which has occurred to the database models
+
+- Audits can be viewed at the `audits` collection within the database
+
+</br>
