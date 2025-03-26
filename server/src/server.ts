@@ -1,3 +1,5 @@
+// prettier-ignore
+import 'dotenv/config';
 import { moduleLogger } from '@sliit-foss/module-logger';
 import { default as config } from '@/config';
 import * as database from '@/database/mongo';

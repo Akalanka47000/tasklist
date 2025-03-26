@@ -1,5 +1,3 @@
-// prettier-ignore
-import 'dotenv/config';
 import { default as crypto } from 'crypto';
 import { default as fs } from 'fs';
 import { default as express, NextFunction, Request, Response } from 'express';

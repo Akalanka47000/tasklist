@@ -1,10 +1,10 @@
 import { Priority, RecurringInterval, TaskStatus } from '@shared/constants';
+import { orderBy } from 'lodash';
 import { default as request } from 'supertest';
 import { app } from '@/app';
+import { errors } from '@/modules/tasks/utils';
 import { faker } from '@faker-js/faker';
 import { registerUser, sessionCookie } from '../../../../../__utils__';
-import { errors } from '@/modules/tasks/utils';
-import { orderBy } from 'lodash';
 
 describe('tasks', () => {
   beforeAll(async () => {
@@ -63,7 +63,7 @@ describe('tasks', () => {
       expect(res.status).toBe(404);
     });
   });
-  describe("should handle tasks with dependencies", () => {
+  describe('should handle tasks with dependencies', () => {
     let task: ITask;
     let dependantTask: ITask;
 
@@ -82,14 +82,12 @@ describe('tasks', () => {
         .send({
           title: faker.lorem.sentence(),
           priority: faker.helpers.arrayElement(Object.values(Priority).filter(Number)),
-          dependencies: [
-            task._id
-          ]
+          dependencies: [task._id]
         })
         .set('Cookie', await sessionCookie(app));
       expect(res.status).toBe(200);
       dependantTask = res.body.data;
-    })
+    });
     test('should fetch a task with dependencies by id', async () => {
       const res = await request(app)
         .get(`/api/v1/tasks/${dependantTask._id}`)
@@ -104,7 +102,7 @@ describe('tasks', () => {
         .send({ status: TaskStatus.Done })
         .set('Cookie', await sessionCookie(app));
       expect(res.status).toBe(400);
-      expect(res.body.message).toBe(errors.dependendant_tasks_not_completed.message)
+      expect(res.body.message).toBe(errors.dependendant_tasks_not_completed.message);
 
       res = await request(app)
         .patch(`/api/v1/tasks/${task._id}`)
@@ -123,7 +121,7 @@ describe('tasks', () => {
         .delete(`/api/v1/tasks/${task._id}`)
         .set('Cookie', await sessionCookie(app));
       expect(res.status).toBe(400);
-      expect(res.body.message).toBe(errors.task_has_dependencies.message)
+      expect(res.body.message).toBe(errors.task_has_dependencies.message);
 
       res = await request(app)
         .delete(`/api/v1/tasks/${dependantTask._id}`)
@@ -135,7 +133,7 @@ describe('tasks', () => {
         .set('Cookie', await sessionCookie(app));
       expect(res.status).toBe(200);
     });
-  })
+  });
   describe('should fetch a list of tasks', () => {
     const tasks = Array.from({ length: 20 }, (_) => ({
       title: faker.lorem.sentence(),
@@ -161,7 +159,7 @@ describe('tasks', () => {
       expect(res.body.data.totalDocs).toBe(tasks.length);
       expect(res.body.data.limit).toBe(5);
       expect(res.body.data.hasNextPage).toBe(true);
-      expect(res.body.data.docs).toEqual(orderBy(res.body.data.docs, "created_at", "desc"))
+      expect(res.body.data.docs).toEqual(orderBy(res.body.data.docs, 'created_at', 'desc'));
     });
     test('should fetch tasks sorted in ascending order of priority', async () => {
       const res = await request(app)
@@ -170,14 +168,14 @@ describe('tasks', () => {
       expect(res.status).toBe(200);
       expect(res.body.data.docs).toHaveLength(15);
       expect(res.body.data.totalDocs).toBe(tasks.length);
-      expect(res.body.data.docs).toEqual(orderBy(res.body.data.docs, "priority", "asc"))
+      expect(res.body.data.docs).toEqual(orderBy(res.body.data.docs, 'priority', 'asc'));
     });
     test('should filter and fetch task', async () => {
       const res = await request(app)
         .get(`/api/v1/tasks?page=1&filter[title]=${tasks[5].title}`)
         .set('Cookie', await sessionCookie(app));
       expect(res.status).toBe(200);
-      expect(res.body.data.docs.length).toBe(tasks.filter(t => t.title === tasks[5].title).length)
+      expect(res.body.data.docs.length).toBe(tasks.filter((t) => t.title === tasks[5].title).length);
     });
   });
 });
