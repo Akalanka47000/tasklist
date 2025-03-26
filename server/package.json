@@ -5,11 +5,11 @@
   "main": "src/server.ts",
   "scripts": {
     "build": "node ../scripts/esbuild.config.js && tscpaths -p tsconfig.json -s ./src -o ./dist",
-    "dev": "tsx watch --conditions development --inspect ./src/server.ts ",
-    "start": "node --conditions production --enable-source-maps dist/server.js",
+    "dev": "tsx watch --conditions dev --inspect ./src/server.ts ",
+    "start": "node --conditions prod --enable-source-maps dist/server.js",
     "lint": "sh ../scripts/lint.sh",
-    "migrate": "sh ./scripts/services/migrate.sh",
-    "seed": "sh ./scripts/services/seed.sh"
+    "migrate": "sh ./scripts/migrate.sh",
+    "seed": "sh ./scripts/seed.sh"
   },
   "dependencies": {
     "@shared/constants": "workspace:*",

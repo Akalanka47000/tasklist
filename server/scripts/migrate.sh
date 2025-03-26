@@ -1,1 +1,1 @@
-npx migrate-mongo $@ --file='../src/database/config/migrate.ts' 
+npx migrate-mongo $@ --file='./src/database/mongo/config/migrations.js' 

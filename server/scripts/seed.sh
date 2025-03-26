@@ -1,1 +1,1 @@
-npx migrate-mongo $@ --file='../src/database/config/seeds.ts' 
+npx migrate-mongo $@ --file='./src/database/mongo/config/seeds.js' 

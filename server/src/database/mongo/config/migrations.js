@@ -1,3 +1,6 @@
+require('dotenv/config');
+
+/** @type {import('migrate-mongo').config.Config} */
 module.exports = {
   mongodb: {
     url: process.env.DB_URL,
@@ -12,4 +15,4 @@ module.exports = {
   migrationFileExtension: '.ts',
   useFileHash: false,
   moduleSystem: 'esm'
-} as import('migrate-mongo').config.Config;
+};

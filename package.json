@@ -31,7 +31,6 @@
     "eslint": "8.33.0",
     "eslint-config-custom": "workspace:*",
     "lefthook": "1.5.5",
-    "node-mocks-http": "1.14.0",
     "prettier": "3.5.2",
     "turbo": "1.11.3"
   },

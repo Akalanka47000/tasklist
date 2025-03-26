@@ -6,18 +6,21 @@
   "main": "src/index.ts",
   "exports": {
     ".": {
-      "development": "./src/index.ts",
-      "production": "./dist/index.js",
+      "dev": "./src/index.ts",
+      "prod": "./dist/index.js",
+      "import": "./src/index.ts",
       "types": "./src/index.ts"
     },
     "./enums": {
-      "development": "./src/enums/index.ts",
-      "production": "./dist/enums/index.js",
+      "dev": "./src/enums/index.ts",
+      "prod": "./dist/enums/index.js",
+      "import": "./src/enums/index.ts",
       "types": "./src/enums/index.ts"
     },
     "./patterns": {
-      "development": "./src/patterns/index.ts",
-      "production": "./dist/patterns/index.js",
+      "dev": "./src/patterns/index.ts",
+      "prod": "./dist/patterns/index.js",
+      "import": "./src/patterns/index.ts",
       "types": "./src/patterns/index.ts"
     }
   },
