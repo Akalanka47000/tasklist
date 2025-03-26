@@ -20,10 +20,12 @@ export function Header({ className, ...props }: HTMLProps<HTMLHeadElement>) {
   const logout = useMutation({
     mutationFn: () => {
       return authService.logout().then((result) => {
-        resetStores();
-        client.invalidateQueries({ queryKey: ['auth'] });
         toast.success(result.message);
       });
+    },
+    onSettled: () => {
+      resetStores();
+      client.invalidateQueries({ queryKey: ['auth'] });
     }
   });
 
