@@ -7,29 +7,28 @@ WORKDIR /app
 
 COPY . .
 
-RUN yarn global add turbo pnpm
+RUN npm i -g turbo
 
-RUN turbo prune --scope=$service --docker
+RUN turbo prune --scope=server --docker
 
 ################################
 # Builds and runs the application
 
-FROM node:18-alpine as runner
+FROM node:20-alpine as runner
 
 WORKDIR /app
 
-RUN yarn global add pnpm
+RUN npm i -g pnpm@9.6.0
 
-COPY .gitignore .gitignore
-
-COPY --from=cleaner /app/out/json/ .
-COPY --from=cleaner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=cleaner /app/out/full/ .
 COPY --from=cleaner /app/scripts ./scripts
 
 RUN pnpm install --ignore-scripts
 
 COPY --from=cleaner /app/out/full/ .
 
-RUN pnpm build --filter=server
+WORKDIR /app/server
 
-CMD ["sh", "-c",  "pnpm start --filter=server"]
+RUN pnpm build
+
+CMD ["sh", "-c",  "pnpm start"]
