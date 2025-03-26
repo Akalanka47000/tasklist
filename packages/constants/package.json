@@ -10,18 +10,6 @@
       "prod": "./dist/index.js",
       "import": "./src/index.ts",
       "types": "./src/index.ts"
-    },
-    "./enums": {
-      "dev": "./src/enums/index.ts",
-      "prod": "./dist/enums/index.js",
-      "import": "./src/enums/index.ts",
-      "types": "./src/enums/index.ts"
-    },
-    "./patterns": {
-      "dev": "./src/patterns/index.ts",
-      "prod": "./dist/patterns/index.js",
-      "import": "./src/patterns/index.ts",
-      "types": "./src/patterns/index.ts"
     }
   },
   "sideEffects": false,

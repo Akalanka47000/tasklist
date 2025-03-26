@@ -32,5 +32,3 @@ export const connect = async (options?: mongoose.ConnectOptions) => {
 export const disconnect = () => mongoose.disconnect();
 
 export const ping = () => mongoose.connection.db.admin().ping();
-
-export const resetDefaultDB = () => mongoose.connection.db.dropDatabase();

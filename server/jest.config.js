@@ -6,5 +6,8 @@ module.exports = {
   preset: 'ts-jest',
   globalSetup: '<rootDir>/test/integration/bootstrap.ts',
   globalTeardown: '<rootDir>/test/integration/teardown.ts',
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: `<rootDir>/src` })
+  moduleNameMapper: {
+    ...pathsToModuleNameMapper(compilerOptions.paths, { prefix: `<rootDir>/src` }),
+    '@shared/constants': '<rootDir>/../packages/constants/src/index.ts'
+  }
 };

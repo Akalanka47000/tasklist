@@ -1,13 +1,11 @@
 import 'tsconfig-paths/register';
-import exec from '@sliit-foss/actions-exec-wrapper';
 import * as dotenv from 'dotenv';
+import * as mongo from '@/database/mongo';
+import { runDockerContainer, waitFor } from '../__utils__';
 
 dotenv.config({ path: '.env.test' });
 
 export default async () => {
-  await Promise.allSettled([
-    exec('docker run -d --name redis -p 6379:6379 redis:6'),
-    exec('docker run -d --name mongo -p 27017:27017 mongo:7')
-  ]);
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+  await Promise.all([runDockerContainer('redis', 6379), runDockerContainer('mongo', 27017)]);
+  await waitFor(mongo.ping);
 };
