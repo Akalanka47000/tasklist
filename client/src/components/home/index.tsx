@@ -1,12 +1,19 @@
 import { useState } from 'react';
 import { Priority, TaskStatus } from '@shared/constants';
 import { Button, DataTable, Filters } from '@/components';
+import { dataAttributes } from '@/constants';
 import { useGetTasks, useMediaQuery } from '@/hooks';
 import { cn } from '@/utils';
 import { columns } from './columns';
-import { default as CreateOrUpdateDialog } from './create-dialog';
+import { testIds as createDialogTestIds, default as CreateOrUpdateDialog } from './create-dialog';
 import { default as DeleteDialog } from './delete';
 import { default as DependencyDialog } from './dependency-dialog';
+
+export const testIds = {
+  ...createDialogTestIds,
+  taskList: 'task-list',
+  createButton: 'task-create-button'
+};
 
 export default function TaskTable() {
   const isMobile = useMediaQuery('(max-width: 768px)');
@@ -56,11 +63,18 @@ export default function TaskTable() {
         }}
         endComponent={
           <CreateOrUpdateDialog>
-            <Button variant="outline">Create New Task</Button>
+            <Button variant="outline" {...{ [dataAttributes.testId]: testIds.createButton }}>
+              Create New Task
+            </Button>
           </CreateOrUpdateDialog>
         }
         filterContainerClassName={cn(isMobile && 'justify-end')}
         endComponentClassName={cn(isMobile && 'ml-0')}
+        tableProps={{
+          body: {
+            [dataAttributes.testId]: testIds.taskList
+          }
+        }}
       />
       <DeleteDialog />
       <DependencyDialog />

@@ -51,6 +51,11 @@ export interface DataTableProps {
   endComponentClassName?: string;
   /** A react component which will render on the top right side of the table */
   endComponent?: React.ReactNode;
+  tableProps?: {
+    root?: React.HTMLProps<HTMLTableElement>;
+    header?: React.HTMLProps<HTMLTableSectionElement>;
+    body?: React.HTMLProps<HTMLTableSectionElement>;
+  };
 }
 
 export function DataTable({
@@ -62,7 +67,8 @@ export function DataTable({
   className,
   filterContainerClassName,
   endComponentClassName,
-  endComponent
+  endComponent,
+  tableProps
 }: DataTableProps) {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
@@ -132,8 +138,8 @@ export function DataTable({
             </div>
           </div>
           <div className="rounded-md border border-border/60">
-            <Table>
-              <TableHeader>
+            <Table {...tableProps?.root}>
+              <TableHeader {...tableProps?.header}>
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
@@ -152,7 +158,7 @@ export function DataTable({
                   </TableRow>
                 ))}
               </TableHeader>
-              <TableBody>
+              <TableBody {...tableProps?.body}>
                 {isLoading &&
                   Array.from({ length: pageSize }).map((_, index) => (
                     <TableRow key={index}>

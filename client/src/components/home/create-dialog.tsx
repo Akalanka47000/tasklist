@@ -13,12 +13,17 @@ import {
   DialogTrigger,
   Form
 } from '@/components/common';
+import { dataAttributes } from '@/constants';
 import { taskService } from '@/services';
 import { useTaskStore } from '@/store/task';
 import { cn, filterAndNotifyError, filterDirtyFields } from '@/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FormSchema, default as TaskForm } from './form';
+
+export const testIds = {
+  createDialog: 'task-create-dialog'
+};
 
 export default function CreateOrUpdateDialog({ children }: { children: React.ReactNode }) {
   const isOpen = useTaskStore((state) => state.isTaskDialogOpen);
@@ -71,7 +76,7 @@ function CreateOrUpdateDialogContent() {
   };
 
   return (
-    <DialogContent>
+    <DialogContent {...{ [dataAttributes.testId]: testIds.createDialog }}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <DialogHeader>

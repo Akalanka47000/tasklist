@@ -4,7 +4,7 @@ const { globPlugin } = require('esbuild-plugin-glob');
 
 const outdir = './dist';
 
-if (fs.existsSync(outdir)) fs.rmdirSync(outdir);
+if (fs.existsSync(outdir)) fs.rmdirSync(outdir, { recursive: true, force: true });
 
 fs.mkdirSync(outdir);
 

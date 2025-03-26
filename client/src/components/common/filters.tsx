@@ -21,7 +21,7 @@ import {
   SelectValue,
   SelectVirtualized
 } from '@/components';
-import { CASE_INSENSITIVE_REGEX, EQ, FILTER, SECONDARY_FILTER } from '@/constants';
+import { CASE_INSENSITIVE_REGEX, dataAttributes, EQ, FILTER, SECONDARY_FILTER } from '@/constants';
 import { useMediaQuery } from '@/hooks';
 import { FilterContentProps, FilterDefinition, FilterOption, FilterProps } from '@/types';
 import { cn } from '@/utils';
@@ -166,6 +166,7 @@ export function FilterContent({
                   name={getFilterName(filter)}
                   type={filter.inputType}
                   onChange={onFilterChange}
+                  {...{ [dataAttributes.testId]: `filter-${filter.key}` }}
                 />
               )}
             </div>
