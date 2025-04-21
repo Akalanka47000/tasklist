@@ -1,5 +1,5 @@
 import type { Request } from 'express';
-import { default as context } from 'express-http-context';
+import { default as context } from '@sliit-foss/express-http-context';
 import { asyncHandler } from '@sliit-foss/functions';
 import { forbiddenRouteError } from '@/middleware';
 import { ctxTask } from '@/modules/tasks/constants';

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { default as context } from 'express-http-context';
 import { ctxAuthorizerError, ctxHeaders, ctxUser, headers } from '@shared/constants';
+import { default as context } from '@sliit-foss/express-http-context';
 import { asyncHandler } from '@sliit-foss/functions';
 import { default as createError } from 'http-errors';
 import { Blacklist, errors, generateTokens, verify } from '@/modules/auth/utils';

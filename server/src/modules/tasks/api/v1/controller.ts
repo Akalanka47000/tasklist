@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { default as context } from 'express-http-context';
+import { default as context } from '@sliit-foss/express-http-context';
 import { traced, tracedAsyncHandler } from '@sliit-foss/functions';
 import { default as filterQuery } from '@sliit-foss/mongoose-filter-query';
 import { celebrate, Segments } from 'celebrate';

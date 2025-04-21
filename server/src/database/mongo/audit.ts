@@ -1,5 +1,5 @@
-import { default as context } from 'express-http-context';
 import { ctxUser } from '@shared/constants';
+import { default as context } from '@sliit-foss/express-http-context';
 import { AuditType, Options, plugin } from '@sliit-foss/mongoose-audit';
 import { default as mongoose } from 'mongoose';
 
