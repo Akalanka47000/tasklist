@@ -1,4 +1,4 @@
-import { Tasks } from 'server';
+import type { Tasks } from 'server/api';
 import { RequestCreateConfig, RequestUpdateConfig } from './common';
 
 export interface CreateTaskConfig extends RequestCreateConfig<Tasks.V1.ICreateTaskRequest> {}

@@ -1,3 +1,3 @@
 export * from './express';
-export * from './zod';
+export * from './mongoose';
 export * from './redis';

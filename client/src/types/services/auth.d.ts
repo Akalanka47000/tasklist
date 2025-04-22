@@ -1,4 +1,4 @@
-import type { Auth } from 'server';
+import type { Auth } from 'server/api';
 import { RequestCreateConfig } from './common';
 
 export interface LoginConfig extends RequestCreateConfig<Auth.V1.ILoginRequest> {}

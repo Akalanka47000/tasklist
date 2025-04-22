@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@sliit-foss/zelebrate':
+        specifier: 1.1.0
+        version: 1.1.0
       lodash:
         specifier: 4.17.21
         version: 4.17.21
@@ -201,6 +204,9 @@ importers:
       '@shared/constants':
         specifier: workspace:*
         version: link:../constants
+      '@sliit-foss/zelebrate':
+        specifier: 1.1.0
+        version: 1.1.0
 
   server:
     dependencies:
@@ -228,9 +234,6 @@ importers:
       '@sliit-foss/mongoose-filter-query':
         specifier: 7.0.3
         version: 7.0.3(bson@6.10.3)(express@4.21.2)
-      '@sliit-foss/zelebrate':
-        specifier: 1.1.0
-        version: 1.1.0
       apicache:
         specifier: 1.6.3
         version: 1.6.3

@@ -2,7 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "author": "Akalanka Perera",
-  "main": "src/server.ts",
+  "exports": {
+    ".": "./src/server.ts",
+    "./api": "./src/config/index.ts"
+  },
   "scripts": {
     "build": "node ../scripts/esbuild.config.js && tscpaths -p tsconfig.json -s ./src -o ./dist",
     "dev": "tsx watch --conditions dev --inspect ./src/server.ts ",
@@ -21,7 +24,6 @@
     "@sliit-foss/mongoose-aggregate-paginate-v2": "3.0.0",
     "@sliit-foss/mongoose-audit": "1.0.2",
     "@sliit-foss/mongoose-filter-query": "7.0.3",
-    "@sliit-foss/zelebrate": "1.1.0",
     "apicache": "1.6.3",
     "bcryptjs": "2.4.3",
     "callsite": "1.0.0",

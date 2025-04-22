@@ -33,6 +33,6 @@
   "include": [
     "src",
     "test",
-    "../server/**/schema/**d.ts"
+    "../server/**/schema/**d.ts",
   ]
 }
