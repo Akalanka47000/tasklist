@@ -3,7 +3,7 @@ import { z } from '@sliit-foss/zelebrate';
 z.objectId = () => z.string().regex(/^[0-9a-f]{24}$/);
 
 /**
- * @description Creates and returns a Joi schema for validating pagination query parameters
+ * @description Creates and returns a Zod schema for validating pagination query parameters
  */
 export const getAllSchema = () => {
   return z.object({
