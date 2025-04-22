@@ -1,3 +1,6 @@
+import { ChangeStreamDeleteDocument, ChangeStreamInsertDocument, ChangeStreamUpdateDocument } from 'mongodb';
+import { mongo } from 'mongoose';
+
 declare module 'mongoose' {
   export interface ExtendedPaginateModel<T> extends PaginateModel<T>, AggregatePaginateModel<T> {
     aggregateUtils: {
@@ -48,6 +51,18 @@ declare module 'mongoose' {
        */
       retrieve: (options: RetrievalOptions, sort?: boolean) => PipelineStage[];
     };
+    onInsert: (
+      fn: (document: Partial<T>, change: ChangeStreamInsertDocument) => void,
+      filters?: Record<string, any>
+    ) => mongo.ChangeStream<any, any>;
+    onUpdate: (
+      fn: (update: Partial<T>, original: T, change: ChangeStreamUpdateDocument) => void,
+      filters?: Record<string, any>
+    ) => mongo.ChangeStream<any, any>;
+    onDelete: (
+      fn: (document: Partial<T>, change: ChangeStreamDeleteDocument) => void,
+      filters?: Record<string, any>
+    ) => mongo.ChangeStream<any, any>;
   }
 
   export interface RetrievalOptions {
