@@ -1,11 +1,10 @@
 import { moduleLogger } from '@sliit-foss/module-logger';
-import { Joi } from 'celebrate';
-import type { Schema } from 'joi';
+import { z } from '@sliit-foss/zelebrate';
 
 const logger = moduleLogger('Config');
 
 interface IConfig<T> {
-  schema: Record<string, Schema>;
+  schema: Record<string, z.ZodTypeAny>;
   values: T;
 }
 
@@ -14,12 +13,12 @@ interface IConfig<T> {
  * @returns The validated config values
  */
 const validate = <T>({ schema, values }: IConfig<T>) => {
-  const { error } = Joi.object(schema).validate(values);
-  if (error) {
-    logger.error(`Environment validation failed. \nDetails - ${error.details[0].message}\nExiting...`);
+  try {
+    return z.object(schema).parse(values);
+  } catch (e) {
+    logger.error(`Environment validation failed. \nDetails - ${e}\nExiting...`);
     process.exit(1);
   }
-  return values;
 };
 
 export enum Environment {
@@ -30,19 +29,19 @@ export enum Environment {
 
 const config = validate({
   schema: {
-    HOST: Joi.string().optional(),
-    PORT: Joi.number().optional(),
-    DB_URL: Joi.string().required(),
-    REDIS_CONNECTION_STRING: Joi.string().required(),
-    JWT_SECRET: Joi.string().optional(),
-    SALT_ROUNDS: Joi.number().optional(),
-    ACCESS_TOKEN_EXPIRY: Joi.string().optional(),
-    REFRESH_TOKEN_EXPIRY: Joi.string().optional(),
-    FRONTEND_BASE_URL: Joi.string().optional(),
+    HOST: z.string().optional(),
+    PORT: z.number().optional(),
+    DB_URL: z.string(),
+    REDIS_CONNECTION_STRING: z.string(),
+    JWT_SECRET: z.string().optional(),
+    SALT_ROUNDS: z.number().optional(),
+    ACCESS_TOKEN_EXPIRY: z.string().optional(),
+    REFRESH_TOKEN_EXPIRY: z.string().optional(),
+    FRONTEND_BASE_URL: z.string().optional(),
     /**
      * Secret key used to bypass authentication, must be unique and rotated if used in production
      */
-    SERVICE_REQUEST_KEY: Joi.string().optional()
+    SERVICE_REQUEST_KEY: z.string().optional()
   },
   values: {
     HOST: process.env.HOST ?? '0.0.0.0',

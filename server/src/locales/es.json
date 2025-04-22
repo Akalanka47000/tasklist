@@ -1,0 +1,7 @@
+{
+  "Invalid email": "Correo electrónico no válido",
+  "The email you entered is already taken": "El correo electrónico que ingresaste ya está en uso",
+  "A resource that you're trying to create already exists on the server": "Un recurso que intentas crear ya existe en el servidor",
+  "The resource you are trying to update has been modified in the background. Please refresh and try again": "El recurso que intentas actualizar ha sido modificado en segundo plano. Por favor, actualiza y vuelve a intentarlo",
+  "Just patching things up. This'll be over in a jiffy": "Solo estamos arreglando las cosas. Esto terminará en un abrir y cerrar de ojos"
+}

@@ -1,10 +1,11 @@
+import { default as crypto } from 'crypto';
 import { Request, Response } from 'express';
-import { default as rateLimit } from 'express-rate-limit';
+import { Options, default as rateLimit } from 'express-rate-limit';
 import { headers } from '@shared/constants';
 import { default as RedisStore } from 'rate-limit-redis';
 import { default as requestIp } from 'request-ip';
 
-const options = {
+const options: Partial<Options> = {
   windowMs: 1 * 60 * 1000,
   standardHeaders: true,
   legacyHeaders: false,
@@ -14,9 +15,8 @@ const options = {
       message: `Too many requests`
     }),
   skip: (req: Request) =>
-    process.env.SERVICE_REQUEST_KEY && req.headers[headers.serviceRequestKey] === process.env.SERVICE_REQUEST_KEY,
-  keyGenerator: (req: Request) => requestIp.getClientIp(req),
-  store: undefined
+    !!(process.env.SERVICE_REQUEST_KEY && req.headers[headers.serviceRequestKey] === process.env.SERVICE_REQUEST_KEY),
+  keyGenerator: (req: Request) => requestIp.getClientIp(req) ?? crypto.randomUUID()
 };
 
 if (process.env.REDIS_CONNECTION_STRING && !process.env.USE_IN_MEMORY_RATE_LIMITER) {

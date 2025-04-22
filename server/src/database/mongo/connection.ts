@@ -10,7 +10,7 @@ const logger = moduleLogger('Database-Connector');
  **/
 export const connect = async (options?: mongoose.ConnectOptions) => {
   try {
-    await mongoose.connect(process.env.DB_URL, {
+    await mongoose.connect(process.env.DB_URL!, {
       socketTimeoutMS: 30000,
       maxIdleTimeMS: 30000,
       ...options

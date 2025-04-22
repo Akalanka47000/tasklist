@@ -1,7 +1,7 @@
 import os from 'os';
 import { Response } from 'express';
-import { default as context } from 'express-http-context';
 import { ctxCorrelationId, headers } from '@shared/constants';
+import { default as context } from '@sliit-foss/express-http-context';
 
 /**
  * @description Middleware function used to add the hostname and correlation id to the response headers

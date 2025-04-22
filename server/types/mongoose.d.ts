@@ -1,3 +1,6 @@
+import { ChangeStreamDeleteDocument, ChangeStreamInsertDocument, ChangeStreamUpdateDocument } from 'mongodb';
+import { mongo } from 'mongoose';
+
 declare module 'mongoose' {
   export interface ExtendedPaginateModel<T> extends PaginateModel<T>, AggregatePaginateModel<T> {
     aggregateUtils: {
@@ -8,7 +11,7 @@ declare module 'mongoose' {
        *  User.aggregateUtils.select(select)
        * ])
        **/
-      select: (select?: string) => PipelineStage;
+      select: (select?: string) => PipelineStage | undefined;
       /**
        * @description This function is used to transform a mongoose include string into a series of lookup stages which can be used in an aggregate pipeline. This is much more performant than using mongoose populates
        * @example
@@ -48,6 +51,18 @@ declare module 'mongoose' {
        */
       retrieve: (options: RetrievalOptions, sort?: boolean) => PipelineStage[];
     };
+    onInsert: (
+      fn: (document: Partial<T>, change: ChangeStreamInsertDocument) => void,
+      filters?: Record<string, any>
+    ) => mongo.ChangeStream<any, any>;
+    onUpdate: (
+      fn: (update: Partial<T>, original: T, change: ChangeStreamUpdateDocument) => void,
+      filters?: Record<string, any>
+    ) => mongo.ChangeStream<any, any>;
+    onDelete: (
+      fn: (document: Partial<T>, change: ChangeStreamDeleteDocument) => void,
+      filters?: Record<string, any>
+    ) => mongo.ChangeStream<any, any>;
   }
 
   export interface RetrievalOptions {

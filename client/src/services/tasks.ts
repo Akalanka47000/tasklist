@@ -1,10 +1,10 @@
 import {
+  CreateTaskConfig,
   ICreateTaskResponse,
   IUpdateTaskResponse,
   RequestConfig,
-  RequestCreateConfig,
   RequestDeleteConfig,
-  RequestUpdateConfig
+  UpdateTaskConfig
 } from '@/types';
 import { instance } from './core';
 
@@ -12,11 +12,11 @@ function getTasks({ v = 'v1', options }: RequestConfig) {
   return instance.get<unknown, IPaginatedAPIResponse<ITask>>(`/api/${v}/tasks`, options);
 }
 
-function createTask({ v = 'v1', data, options }: RequestCreateConfig) {
+function createTask({ v = 'v1', data, options }: CreateTaskConfig) {
   return instance.post<unknown, ICreateTaskResponse>(`/api/${v}/tasks`, data, options);
 }
 
-function updateTask({ v = 'v1', id, data, options }: RequestUpdateConfig) {
+function updateTask({ v = 'v1', id, data, options }: UpdateTaskConfig) {
   return instance.patch<unknown, IUpdateTaskResponse>(`/api/${v}/tasks/${id}`, data, options);
 }
 

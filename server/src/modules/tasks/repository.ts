@@ -8,7 +8,7 @@ export const createTask = (task: Partial<ITask>): Promise<ITask> => {
 };
 
 export const getAllTasks = ({ page, limit, ...options }: mongoose.RetrievalOptions, user: IUser) => {
-  options.filter.user = new mongoose.Types.ObjectId(user._id);
+  options.filter!.user = new mongoose.Types.ObjectId(user._id);
   options.include ??= [];
   if (!options.include.includes('dependencies')) options.include.push('dependencies');
   const pipeline = Task.aggregate(Task.aggregateUtils.retrieve(options));
@@ -29,7 +29,7 @@ export const getTaskById = async (id: string, include: string[] = ['dependencies
   return task;
 };
 
-export const updateTaskById = (id: string, data: Partial<ITask>): Promise<ITask> => {
+export const updateTaskById = (id: string, data: Partial<ITask>): Promise<ITask | null> => {
   return Task.findByIdAndUpdate(id, data, { new: true }).lean();
 };
 

@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import { tracedAsyncHandler } from '@sliit-foss/functions';
-import { celebrate, Segments } from 'celebrate';
+import { Segments, zelebrateStack } from '@sliit-foss/zelebrate';
 import { protect, toSuccess } from '@/middleware';
 import { clearTokenCookies, setTokenCookies } from '../../utils/cookie';
 import { loginSchema, registerSchema } from './schema';
@@ -10,33 +10,35 @@ const auth = express.Router();
 
 auth.post(
   '/login',
-  celebrate({ [Segments.BODY]: loginSchema }),
-  tracedAsyncHandler(async function login(req: Request, res: Response) {
-    const { user, access_token, refresh_token } = await service.login(req.body);
-    setTokenCookies(res, access_token, refresh_token);
-    return toSuccess({ res, data: user, message: 'Login successfull!' });
-  })
+  zelebrateStack({ [Segments.BODY]: loginSchema })(
+    tracedAsyncHandler(async function login(req, res) {
+      const { user, access_token, refresh_token } = await service.login(req.body);
+      setTokenCookies(res, access_token, refresh_token);
+      return toSuccess({ res, data: user, message: 'Login successfull!' });
+    })
+  )
 );
 
 auth.post(
   '/register',
-  celebrate({ [Segments.BODY]: registerSchema }),
-  tracedAsyncHandler(async function register(req: Request, res: Response) {
-    const { user, access_token, refresh_token } = await service.register(req.body, req.user);
-    setTokenCookies(res, access_token, refresh_token);
-    return toSuccess({
-      res,
-      data: user,
-      message: 'Registration successfull!'
-    });
-  })
+  zelebrateStack({ [Segments.BODY]: registerSchema })(
+    tracedAsyncHandler(async function register(req, res) {
+      const { user, access_token, refresh_token } = await service.register(req.body, req.user);
+      setTokenCookies(res, access_token, refresh_token);
+      return toSuccess({
+        res,
+        data: user,
+        message: 'Registration successfull!'
+      });
+    })
+  )
 );
 
 auth.get(
   '/current',
   protect,
-  tracedAsyncHandler(function getAuthUser(req: Request, res: Response) {
-    delete req.user.password;
+  tracedAsyncHandler(function getAuthUser(req, res) {
+    delete req.user?.password;
     return toSuccess({ res, data: req.user, message: 'Auth user fetched successfully!' });
   })
 );

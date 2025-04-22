@@ -1,10 +1,10 @@
-import en from './en.json';
+import es from './es.json';
 
 export const locales = {
-  en
+  es
 };
 
-export type Locale = keyof typeof locales;
+export type Locale = keyof typeof locales | 'en';
 
 export const defaultLocale: Locale = 'en';
 

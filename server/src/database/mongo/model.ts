@@ -2,6 +2,7 @@ import { default as aggregatePaginate } from '@sliit-foss/mongoose-aggregate-pag
 import { ModelDocument, default as mongoose } from 'mongoose';
 import { default as mongooseLeanDefaults } from 'mongoose-lean-defaults';
 import { default as mongoosePaginate } from 'mongoose-paginate-v2';
+import { registerEvents } from './events';
 import { registerUtilities } from './utilities';
 
 const paginatedModel = <T>(name: string, schema: mongoose.Schema, syncIndexes = true) => {
@@ -20,6 +21,8 @@ const paginatedModel = <T>(name: string, schema: mongoose.Schema, syncIndexes = 
   }
 
   registerUtilities<T>(model);
+
+  registerEvents<T>(model);
 
   return model;
 };

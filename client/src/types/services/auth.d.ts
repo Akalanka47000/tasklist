@@ -1,17 +1,12 @@
-import { RequestConfig, RequestCreateConfig } from './common';
+import type { Auth } from 'server/api';
+import { RequestCreateConfig } from './common';
 
-export interface LoginConfig extends RequestCreateConfig {}
+export interface LoginConfig extends RequestCreateConfig<Auth.V1.ILoginRequest> {}
 
 export type ILoginResponse = IAPIResponse<IUser>;
 
-export interface RegisterConfig extends RequestCreateConfig {}
+export interface RegisterConfig extends RequestCreateConfig<Auth.V1.IRegisterRequest> {}
 
-export interface IRegisterResponse extends ILoginResponse {}
-
-export interface CurrentConfig extends RequestConfig {}
+export type IRegisterResponse = IAPIResponse<IUser>;
 
 export type ICurrentUserResponse = IAPIResponse<IUser>;
-
-export interface LogoutConfig extends RequestConfig {}
-
-export type ILogoutResponse = IAPIResponse;

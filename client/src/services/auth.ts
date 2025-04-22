@@ -1,12 +1,10 @@
 import type {
-  CurrentConfig,
   ICurrentUserResponse,
   ILoginResponse,
-  ILogoutResponse,
   IRegisterResponse,
   LoginConfig,
-  LogoutConfig,
-  RegisterConfig
+  RegisterConfig,
+  RequestConfig
 } from '@/types';
 import { instance } from './core';
 
@@ -18,12 +16,12 @@ function register({ v = 'v1', data, options }: RegisterConfig) {
   return instance.post<unknown, IRegisterResponse>(`/api/${v}/auth/register`, data, options);
 }
 
-function current({ v = 'v1', options }: CurrentConfig = {}) {
+function current({ v = 'v1', options }: RequestConfig = {}) {
   return instance.get<unknown, ICurrentUserResponse>(`/api/${v}/auth/current`, options);
 }
 
-function logout({ v = 'v1', options }: LogoutConfig = {}) {
-  return instance.post<unknown, ILogoutResponse>(`/api/${v}/auth/logout`, undefined, options);
+function logout({ v = 'v1', options }: RequestConfig = {}) {
+  return instance.post<unknown, IAPIResponse>(`/api/${v}/auth/logout`, undefined, options);
 }
 
 export default {

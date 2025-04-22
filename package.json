@@ -17,6 +17,7 @@
     "prepare": "lefthook install"
   },
   "dependencies": {
+    "@sliit-foss/zelebrate": "1.1.0",
     "lodash": "4.17.21"
   },
   "devDependencies": {

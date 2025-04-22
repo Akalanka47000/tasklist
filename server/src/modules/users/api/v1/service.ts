@@ -5,7 +5,7 @@ import { hashPasswordIfProvided } from './helpers';
 
 const layer = 'repository';
 
-export const createUser = async (user: IUser) => {
+export const createUser = async (user: Partial<IUser>) => {
   await hashPasswordIfProvided(user);
   user.email &&= user.email.toLowerCase();
   return traced[layer](repository.createUser)(user);

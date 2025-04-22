@@ -34,7 +34,7 @@ export const expressHealth = (options) => {
 
     function serveReadinessOrLiveness(req: Request, res: Response) {
       const response = {};
-      const promises = [];
+      const promises: Promise<any>[] = [];
 
       const fn = function (key) {
         return function (result) {

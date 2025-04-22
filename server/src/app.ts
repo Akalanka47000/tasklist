@@ -1,8 +1,8 @@
 import { default as crypto } from 'crypto';
 import { default as fs } from 'fs';
 import { default as express, NextFunction, Request, Response } from 'express';
-import { default as context } from 'express-http-context';
 import { ctxCorrelationId, headers } from '@shared/constants';
+import { default as context } from '@sliit-foss/express-http-context';
 import { default as stack } from 'callsite';
 import { default as compression } from 'compression';
 import { default as cookieParser } from 'cookie-parser';

@@ -8,7 +8,7 @@ export default z
       .regex(regex.name, { message: 'Name must contain only letters' })
       .min(2, { message: 'Name must be at least 2 characters' }),
     email: z.string().email(),
-    password: z.string().optional(),
+    password: z.string(),
     confirm_password: z.string().optional()
   })
   .refine((data) => data.password && regex.password.test(data.password), {
