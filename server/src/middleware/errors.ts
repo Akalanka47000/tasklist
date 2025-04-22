@@ -38,8 +38,6 @@ export const errorHandler: ErrorRequestHandler = (err, _req, res, next) => {
   err.message =
     !err.message || err.status === 500 ? "Just patching things up. This'll be over in a jiffy" : err.message;
   if (res.polyglot) err.message = res.polyglot.t(err.message);
-  res.status(err.status).json({
-    message: err.message
-  });
+  res.status(err.status).json({ message: err.message });
   next();
 };
