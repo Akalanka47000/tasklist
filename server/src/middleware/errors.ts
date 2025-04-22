@@ -1,3 +1,4 @@
+import { NextFunction, Request, Response } from 'express';
 import { moduleLogger } from '@sliit-foss/module-logger';
 import { isZelebrateError } from '@sliit-foss/zelebrate';
 
@@ -10,29 +11,29 @@ const logger = moduleLogger('Error-handler');
  * app.use(errorHandler);
  */
 // eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
-export const errorHandler = (err, _req, res, next) => {
+export const errorHandler = (err, _req: Request, res: Response, next: NextFunction) => {
   if (isZelebrateError(err)) {
-    for (const [, zodErr] of err.details.entries()) {
-      const message = zodErr.pretty();
-      if (!res.errorLogged) logger.error(err.message, { details: message });
-      return res.status(422).json({ message });
+    for (const zodErr of err.details.values()) {
+      err.message = zodErr.pretty();
+      break;
     }
   } else if ((err.name === 'MongoServerError' || err.name === 'MongoBulkWriteError') && err.code === 11000) {
     if (err.name === 'MongoBulkWriteError') {
-      return res.status(400).json({ message: `A resource that you're trying to create already exists on the server` });
+      err.status = 400;
+      err.message = `A resource that you're trying to create already exists on the server`;
+    } else {
+      const key = Object.keys(err.keyValue)[0];
+      err.status = 400;
+      err.message = `The ${key} ${!err.hexEncoded ? err.keyValue[key] : 'you entered'} is already taken`;
     }
-    const key = Object.keys(err.keyValue)[0];
-    return res
-      .status(400)
-      .json({ message: `The ${key} ${!err.hexEncoded ? err.keyValue[key] : 'you entered'} is already taken` });
   } else if (err.name === 'VersionError') {
-    return res.status(409).json({
-      message: 'The resource you are trying to update has been modified in the background. Please refresh and try again'
-    });
-  } else {
-    if (!res.errorLogged) logger.error(err.message, err);
+    err.status = 409;
+    err.message = `The resource you are trying to update has been modified in the background. Please refresh and try again`;
   }
-  res.errorLogged = true;
+  if (!res.errorLogged) {
+    logger.error(err.message, err);
+    res.errorLogged = true;
+  }
   err.status ??= 500;
   err.message =
     !err.message || err.status === 500 ? "Just patching things up. This'll be over in a jiffy" : err.message;

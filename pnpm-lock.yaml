@@ -229,8 +229,8 @@ importers:
         specifier: 7.0.3
         version: 7.0.3(bson@6.10.3)(express@4.21.2)
       '@sliit-foss/zelebrate':
-        specifier: 1.0.0
-        version: 1.0.0
+        specifier: 1.1.0
+        version: 1.1.0
       apicache:
         specifier: 1.6.3
         version: 1.6.3
@@ -1668,8 +1668,8 @@ packages:
       bson: '>=4'
       express: '*'
 
-  '@sliit-foss/zelebrate@1.0.0':
-    resolution: {integrity: sha512-T8A31MuYWTRkr0iwH89KWerazXStv6RpvwZ/avbjkdTOGshStrFYvfPB4dhyGpeCBSPaj8VSprapozGE0JE+mQ==}
+  '@sliit-foss/zelebrate@1.1.0':
+    resolution: {integrity: sha512-RCAbffJQ4r+GbxdxS40ktOdOsdA+ymICvs0Aa4EcsgK1kiIQPAa9TNxE+PsSYeoHWWeJ9u2YYEK6pOQ0rCdD2A==}
 
   '@swc/core-darwin-arm64@1.11.13':
     resolution: {integrity: sha512-loSERhLaQ9XDS+5Kdx8cLe2tM1G0HLit8MfehipAcsdctpo79zrRlkW34elOf3tQoVPKUItV0b/rTuhjj8NtHg==}
@@ -7048,7 +7048,7 @@ snapshots:
       bson: 6.10.3
       express: 4.21.2
 
-  '@sliit-foss/zelebrate@1.0.0':
+  '@sliit-foss/zelebrate@1.1.0':
     dependencies:
       escape-html: 1.0.3
       lodash: 4.17.21
