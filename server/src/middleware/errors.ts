@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { ErrorRequestHandler } from 'express';
 import { moduleLogger } from '@sliit-foss/module-logger';
 import { isZelebrateError } from '@sliit-foss/zelebrate';
 
@@ -11,7 +11,7 @@ const logger = moduleLogger('Error-handler');
  * app.use(errorHandler);
  */
 // eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
-export const errorHandler = (err, _req: Request, res: Response, next: NextFunction) => {
+export const errorHandler: ErrorRequestHandler = (err, _req, res, next) => {
   if (isZelebrateError(err)) {
     for (const zodErr of err.details.values()) {
       err.message = zodErr.pretty();
@@ -38,7 +38,8 @@ export const errorHandler = (err, _req: Request, res: Response, next: NextFuncti
   err.message =
     !err.message || err.status === 500 ? "Just patching things up. This'll be over in a jiffy" : err.message;
   if (res.polyglot) err.message = res.polyglot.t(err.message);
-  return res.status(err.status).json({
+  res.status(err.status).json({
     message: err.message
   });
+  next();
 };
