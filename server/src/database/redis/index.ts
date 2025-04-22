@@ -4,7 +4,7 @@ import { default as Redlock } from 'redlock';
 
 const logger = moduleLogger('Redis');
 
-export const redis = new Redis(process.env.REDIS_CONNECTION_STRING);
+export const redis = new Redis(process.env.REDIS_CONNECTION_STRING!);
 
 export const redlock = new Redlock([redis as any], { retryCount: 20 });
 
