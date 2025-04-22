@@ -6,10 +6,12 @@ z.objectId = () => z.string().regex(/^[0-9a-f]{24}$/);
  * @description Creates and returns a Zod schema for validating pagination query parameters
  */
 export const getAllSchema = () => {
-  return z.object({
-    page: z.number().int().min(1),
-    limit: z.number().int().min(1).max(100).default(10)
-  });
+  return z
+    .object({
+      page: z.coerce.number().int().min(1),
+      limit: z.coerce.number().int().min(1).max(100).default(10)
+    })
+    .catchall(z.unknown());
 };
 
 /**

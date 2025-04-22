@@ -8,7 +8,7 @@ declare module 'mongoose' {
        *  User.aggregateUtils.select(select)
        * ])
        **/
-      select: (select?: string) => PipelineStage;
+      select: (select?: string) => PipelineStage | undefined;
       /**
        * @description This function is used to transform a mongoose include string into a series of lookup stages which can be used in an aggregate pipeline. This is much more performant than using mongoose populates
        * @example

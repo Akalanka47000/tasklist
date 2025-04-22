@@ -4,9 +4,9 @@ import { createUser, updateUserById } from '@/modules/users/api/v1/service';
 import { getUserByEmail } from '@/modules/users/repository';
 
 export const login = async ({ email, password }: Pick<IUser, 'email' | 'password'>) => {
-  const user = await getUserByEmail(email);
+  const user = await getUserByEmail(email!);
   if (!user) throw errors.invalid_credentials;
-  if (!user.password || !bcrypt.compareSync(password, user.password)) {
+  if (!user.password || !bcrypt.compareSync(password!, user.password)) {
     throw errors.invalid_credentials;
   }
   updateUserById(user._id, { last_login_time: new Date().toISOString() });
@@ -16,7 +16,7 @@ export const login = async ({ email, password }: Pick<IUser, 'email' | 'password
   };
 };
 
-export const register = (user: IUser, existingUser?: IUser) => {
+export const register = (user: Partial<IUser>, existingUser?: IUser) => {
   const next = (user: IUser) => {
     return {
       user,

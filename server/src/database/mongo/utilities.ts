@@ -7,7 +7,7 @@ import { ModelDocument, default as mongoose, PipelineStage } from 'mongoose';
  **/
 export const registerUtilities = <T>(model: mongoose.ExtendedPaginateModel<ModelDocument<T>>) => {
   model.aggregateUtils = {
-    select(select?: string): PipelineStage {
+    select(select?: string): PipelineStage | undefined {
       if (!select) return undefined;
       return {
         $project: select
@@ -16,7 +16,7 @@ export const registerUtilities = <T>(model: mongoose.ExtendedPaginateModel<Model
       };
     },
     include(include?: string[]): PipelineStage[] {
-      const nonArrayFields = [];
+      const nonArrayFields: string[] = [];
       const stages =
         include?.reduce((acc, curr) => {
           let collection: string | undefined;

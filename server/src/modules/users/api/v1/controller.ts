@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { tracedAsyncHandler } from '@sliit-foss/functions';
 import { default as filterQuery } from '@sliit-foss/mongoose-filter-query';
-import { Segments, zelebrate } from '@sliit-foss/zelebrate';
+import { Segments, zelebrate, zelebrateStack } from '@sliit-foss/zelebrate';
 import { cache, cacheSuccess, internal, toSuccess } from '@/middleware';
 import { getAllSchema, objectIdSchema } from '@/utils';
 import { errors } from '../../utils';
@@ -13,22 +13,27 @@ const user = express.Router();
 user.post(
   '/',
   internal,
-  zelebrate({ [Segments.BODY]: createUserSchema }),
-  tracedAsyncHandler(async function createUser(req: Request, res: Response) {
-    const data = await service.createUser(req.body);
-    return toSuccess({ res, data, message: 'User created successfully!' });
-  })
+  zelebrateStack({ [Segments.BODY]: createUserSchema })(
+    tracedAsyncHandler(async function createUser(req, res) {
+      const data = await service.createUser(req.body);
+      return toSuccess({ res, data, message: 'User created successfully!' });
+    })
+  )
 );
 
 user.get(
   '/',
   internal,
-  zelebrate({ [Segments.QUERY]: getAllSchema() }, {}),
   filterQuery,
-  tracedAsyncHandler(async function getUsers(req: Request, res: Response) {
-    const data = await service.getUsers(req.query);
-    return toSuccess({ res, data, message: 'Users fetched successfully!' });
-  })
+  zelebrateStack(
+    { [Segments.QUERY]: getAllSchema() },
+    {}
+  )(
+    tracedAsyncHandler(async function getUsers(req, res) {
+      const data = await service.getUsers(req.query);
+      return toSuccess({ res, data, message: 'Users fetched successfully!' });
+    })
+  )
 );
 
 user.get(
@@ -47,13 +52,14 @@ user.get(
 user.patch(
   '/:id',
   internal,
-  zelebrate({ [Segments.PARAMS]: objectIdSchema(), [Segments.BODY]: updateUserSchema }),
-  tracedAsyncHandler(async function updateUserById(req: Request, res: Response) {
-    const data = await service.updateUserById(req.params.id, req.body);
-    if (!data) throw errors.user_not_found;
-    cache.clear(req.params.id);
-    return toSuccess({ res, data, message: 'User updated successfully!' });
-  })
+  zelebrateStack({ [Segments.PARAMS]: objectIdSchema(), [Segments.BODY]: updateUserSchema })(
+    tracedAsyncHandler(async function updateUserById(req, res) {
+      const data = await service.updateUserById(req.params.id, req.body);
+      if (!data) throw errors.user_not_found;
+      cache.clear(req.params.id);
+      return toSuccess({ res, data, message: 'User updated successfully!' });
+    })
+  )
 );
 
 user.delete(

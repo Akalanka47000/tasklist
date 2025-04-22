@@ -211,8 +211,8 @@ importers:
         specifier: 2.0.0
         version: 2.0.0
       '@sliit-foss/functions':
-        specifier: 3.0.1
-        version: 3.0.1
+        specifier: 3.1.0
+        version: 3.1.0
       '@sliit-foss/http-logger':
         specifier: 2.0.0
         version: 2.0.0(express@4.21.2)
@@ -229,8 +229,8 @@ importers:
         specifier: 7.0.3
         version: 7.0.3(bson@6.10.3)(express@4.21.2)
       '@sliit-foss/zelebrate':
-        specifier: 0.1.0-blizzard.6
-        version: 0.1.0-blizzard.6(express@4.21.2)
+        specifier: 0.1.0-blizzard.7
+        version: 0.1.0-blizzard.7
       apicache:
         specifier: 1.6.3
         version: 1.6.3
@@ -1634,8 +1634,8 @@ packages:
   '@sliit-foss/express-http-context@2.0.0':
     resolution: {integrity: sha512-JeBnTN6PnEBOuULZgUL4QZ3rCJud9RHPRfl344tlafDNjA7fVPZVeQvo1DCC0XCRNDHlZ6+ZSC0b2DzXxV/yPQ==}
 
-  '@sliit-foss/functions@3.0.1':
-    resolution: {integrity: sha512-jSZXyt2S4lVJbJz3BoZE+wIUi5xQMvBcmxlXh9I6Y75lQM/eO4De3CNRSgdqnsolbEa395XrzpivDkByTm3qNQ==}
+  '@sliit-foss/functions@3.1.0':
+    resolution: {integrity: sha512-BvpREdis700rE6fg95U6yXYz8vf9qLC2F3rpdMsoZWeYwbNUl7hxvmeh/Dy9kppQAfy+dsOS7uWf0McYqP2WkQ==}
 
   '@sliit-foss/http-logger@2.0.0':
     resolution: {integrity: sha512-iNsDK2S/nVkam9If4TMa49gkk0rvWBdH+nlQ25Wlb2yA6a5NLxoMSeeSHS01S5a3AOxslrYNjYsW7GKfm9PNFg==}
@@ -1662,10 +1662,8 @@ packages:
       bson: '>=4'
       express: '*'
 
-  '@sliit-foss/zelebrate@0.1.0-blizzard.6':
-    resolution: {integrity: sha512-X0vWah6MjKGjVg13YelUCY5yrAOAx36i7PQtPwE1d1spK4cGkFCzrr411DerBeb1Ec6/DUb//zVUnIyDVy9okA==}
-    peerDependencies:
-      express: '*'
+  '@sliit-foss/zelebrate@0.1.0-blizzard.7':
+    resolution: {integrity: sha512-/TmLkuXOEuGj3S5qZ1CI4PEeXB7JnFaV+qGuo13My1uTZbdMdFtagBxN0wzZ9nD1IPO/URWuaQDvjWHcrftkfw==}
 
   '@swc/core-darwin-arm64@1.11.13':
     resolution: {integrity: sha512-loSERhLaQ9XDS+5Kdx8cLe2tM1G0HLit8MfehipAcsdctpo79zrRlkW34elOf3tQoVPKUItV0b/rTuhjj8NtHg==}
@@ -6995,7 +6993,7 @@ snapshots:
 
   '@sliit-foss/express-http-context@2.0.0': {}
 
-  '@sliit-foss/functions@3.0.1':
+  '@sliit-foss/functions@3.1.0':
     dependencies:
       '@sliit-foss/express-http-context': 2.0.0
       '@sliit-foss/module-logger': 2.0.0
@@ -7033,12 +7031,15 @@ snapshots:
       bson: 6.10.3
       express: 4.21.2
 
-  '@sliit-foss/zelebrate@0.1.0-blizzard.6(express@4.21.2)':
+  '@sliit-foss/zelebrate@0.1.0-blizzard.7':
     dependencies:
       escape-html: 1.0.3
-      express: 4.21.2
       lodash: 4.17.21
       zod: 3.24.3
+    optionalDependencies:
+      express: 4.21.2
+    transitivePeerDependencies:
+      - supports-color
 
   '@swc/core-darwin-arm64@1.11.13':
     optional: true

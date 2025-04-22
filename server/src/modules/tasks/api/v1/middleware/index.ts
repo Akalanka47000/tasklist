@@ -13,8 +13,8 @@ export const requireSelf = asyncHandler(async (req: Request) => {
   const task = await getTaskById(req.params.id, req.query.include as string);
   if (!task) throw errors.task_not_found;
   if (
-    task.user.toString() !== req.user._id.toString() &&
-    (task.user as IUser)._id?.toString() !== req.user._id.toString()
+    task.user.toString() !== req.user!._id.toString() &&
+    (task.user as IUser)._id?.toString() !== req.user!._id.toString()
   )
     throw forbiddenRouteError;
   context.set(ctxTask, task);
