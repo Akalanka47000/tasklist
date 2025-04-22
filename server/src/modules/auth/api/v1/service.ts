@@ -1,9 +1,11 @@
+import { z } from '@sliit-foss/zelebrate';
 import { default as bcrypt } from 'bcryptjs';
 import { Blacklist, errors, generateTokens } from '@/modules/auth/utils';
 import { createUser, updateUserById } from '@/modules/users/api/v1/service';
 import { getUserByEmail } from '@/modules/users/repository';
+import { loginSchema, registerSchema } from './schema';
 
-export const login = async ({ email, password }: Pick<IUser, 'email' | 'password'>) => {
+export const login = async ({ email, password }: z.infer<typeof loginSchema>) => {
   const user = await getUserByEmail(email!);
   if (!user) throw errors.invalid_credentials;
   if (!user.password || !bcrypt.compareSync(password!, user.password)) {
@@ -16,7 +18,7 @@ export const login = async ({ email, password }: Pick<IUser, 'email' | 'password
   };
 };
 
-export const register = (user: Partial<IUser>, existingUser?: IUser) => {
+export const register = (data: z.infer<typeof registerSchema>, existingUser?: IUser) => {
   const next = (user: IUser) => {
     return {
       user,
@@ -24,9 +26,9 @@ export const register = (user: Partial<IUser>, existingUser?: IUser) => {
     };
   };
   if (existingUser) {
-    return updateUserById(existingUser._id, user).then(next);
+    return updateUserById(existingUser._id, data).then(next);
   }
-  return createUser(user).then(next);
+  return createUser(data).then(next);
 };
 
 export const logout = (token: string) => {

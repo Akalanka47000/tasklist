@@ -5,17 +5,19 @@ export interface RequestConfig {
   options?: AxiosRequestConfig & { _retry?: boolean };
 }
 
-export interface RequestCreateConfig extends RequestConfig {
-  data: Record<string, any>;
+export interface RequestCreateConfig<T = Record<string, any>> extends RequestConfig {
+  data: T;
 }
 
-export interface RequestUpdateConfig extends RequestConfig {
+export interface RequestUpdateConfig<T = Record<string, any>> extends RequestConfig {
   id: string;
-  data: Record<string, any>;
+  data: T;
 }
 
 export interface RequestGetByIdConfig extends RequestConfig {
   id: string;
 }
 
-export type RequestDeleteConfig = RequestGetByIdConfig;
+export interface RequestDeleteConfig extends RequestConfig {
+  id: string;
+}

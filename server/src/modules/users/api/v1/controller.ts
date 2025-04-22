@@ -25,10 +25,7 @@ user.get(
   '/',
   internal,
   filterQuery,
-  zelebrateStack(
-    { [Segments.QUERY]: getAllSchema() },
-    {}
-  )(
+  zelebrateStack({ [Segments.QUERY]: getAllSchema() })(
     tracedAsyncHandler(async function getUsers(req, res) {
       const data = await service.getUsers(req.query);
       return toSuccess({ res, data, message: 'Users fetched successfully!' });
