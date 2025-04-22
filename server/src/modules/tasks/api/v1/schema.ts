@@ -1,16 +1,13 @@
 import { Priority, RecurringInterval, TaskStatus } from '@shared/constants';
-import { Joi } from 'celebrate';
-import { optionalSchema } from '@/utils';
+import { z } from '@sliit-foss/zelebrate';
 
-export const createTaskSchema = Joi.object({
-  title: Joi.string().required(),
-  priority: Joi.number()
-    .valid(...Object.values(Priority))
-    .required(),
-  recurring_interval: Joi.string().valid(...Object.values(RecurringInterval)),
-  dependencies: Joi.array().items(Joi.objectId())
+export const createTaskSchema = z.object({
+  title: z.string(),
+  priority: z.nativeEnum(Priority),
+  recurring_interval: z.nativeEnum(RecurringInterval).optional(),
+  dependencies: z.array(z.objectId()).optional()
 });
 
-export const updateTaskSchema = optionalSchema(createTaskSchema).keys({
-  status: Joi.string().valid(...Object.values(TaskStatus))
+export const updateTaskSchema = createTaskSchema.partial().extend({
+  status: z.nativeEnum(TaskStatus).optional()
 });

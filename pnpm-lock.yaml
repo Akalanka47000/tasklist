@@ -229,8 +229,8 @@ importers:
         specifier: 7.0.3
         version: 7.0.3(bson@6.10.3)(express@4.21.2)
       '@sliit-foss/zelebrate':
-        specifier: 0.1.0-blizzard.2
-        version: 0.1.0-blizzard.2(express@4.21.2)
+        specifier: 0.1.0-blizzard.6
+        version: 0.1.0-blizzard.6(express@4.21.2)
       apicache:
         specifier: 1.6.3
         version: 1.6.3
@@ -240,9 +240,6 @@ importers:
       callsite:
         specifier: 1.0.0
         version: 1.0.0
-      celebrate:
-        specifier: 15.0.1
-        version: 15.0.1
       compression:
         specifier: 1.7.4
         version: 1.7.4
@@ -939,12 +936,6 @@ packages:
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
 
-  '@hapi/hoek@9.3.0':
-    resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
-
-  '@hapi/topo@5.1.0':
-    resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
-
   '@happy-dom/global-registrator@13.3.8':
     resolution: {integrity: sha512-7pHqBYKqfHZkowdy/ScCLHqwHLFDO0nQqizp3fKuBdQEaeYoCOm8igVLBLMtOtZ9Lzuv2cYk7g19qfuQLHy7xw==}
     engines: {node: '>=16.0.0'}
@@ -1625,15 +1616,6 @@ packages:
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
 
-  '@sideway/address@4.1.5':
-    resolution: {integrity: sha512-IqO/DUQHUkPeixNQ8n0JA6102hT9CmaljNTPmQ1u8MEhBo/R4Q8eKLN/vGZxuebwOroDB4cbpjheD4+/sKFK4Q==}
-
-  '@sideway/formula@3.0.1':
-    resolution: {integrity: sha512-/poHZJJVjx3L+zVD6g9KgHfYnb443oi7wLu/XKojDviHy6HOEOA6z1Trk5aR1dGcmPenJEgb2sK2I80LeS3MIg==}
-
-  '@sideway/pinpoint@2.0.0':
-    resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
-
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
 
@@ -1680,8 +1662,8 @@ packages:
       bson: '>=4'
       express: '*'
 
-  '@sliit-foss/zelebrate@0.1.0-blizzard.2':
-    resolution: {integrity: sha512-csvqn8m4ZfT1Iu8erYrO/pveB5LX7xz22tcErOc5E8HzM3YUC/W2lB70eUPXHKzEPWoWnks1iUEO1XWm3DuooA==}
+  '@sliit-foss/zelebrate@0.1.0-blizzard.6':
+    resolution: {integrity: sha512-X0vWah6MjKGjVg13YelUCY5yrAOAx36i7PQtPwE1d1spK4cGkFCzrr411DerBeb1Ec6/DUb//zVUnIyDVy9okA==}
     peerDependencies:
       express: '*'
 
@@ -2469,9 +2451,6 @@ packages:
 
   caniuse-lite@1.0.30001707:
     resolution: {integrity: sha512-3qtRjw/HQSMlDWf+X79N206fepf4SOOU6SQLMaq/0KkZLmSjPxAkBOQQ+FxbHKfHmYLZFfdWsO3KA90ceHPSnw==}
-
-  celebrate@15.0.1:
-    resolution: {integrity: sha512-K2y221k10u+K2t9w25802qXh8h1mVWZf+6pl7zHdlhhwzrOSQFnnw+GsR8k17oyn4Y3fVErBGsO/+CeW8N7aRQ==}
 
   chai@5.2.0:
     resolution: {integrity: sha512-mCuXncKXk5iCLhfhwTc0izo0gtEmpz5CtG2y8GiOINBlMVS6v8TMRc5TaLWKS6692m9+dVVfzgeVxR5UxWHTYw==}
@@ -3859,9 +3838,6 @@ packages:
   jiti@2.4.2:
     resolution: {integrity: sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A==}
     hasBin: true
-
-  joi@17.13.3:
-    resolution: {integrity: sha512-otDA4ldcIx+ZXsKHWmp0YizCweVRZG96J10b0FevjfuncLO1oX59THoAmHkNubYJ+9gWsYsp5k8v4ib6oDv1fA==}
 
   js-sdsl@4.4.2:
     resolution: {integrity: sha512-dwXFwByc/ajSV6m5bcKAPwe4yDDF6D614pxmIi5odytzxRlwqF6nwoiCek80Ixc7Cvma5awClxrzFtxCQvcM8w==}
@@ -6228,12 +6204,6 @@ snapshots:
 
   '@floating-ui/utils@0.2.9': {}
 
-  '@hapi/hoek@9.3.0': {}
-
-  '@hapi/topo@5.1.0':
-    dependencies:
-      '@hapi/hoek': 9.3.0
-
   '@happy-dom/global-registrator@13.3.8':
     dependencies:
       happy-dom: 13.10.1
@@ -7007,14 +6977,6 @@ snapshots:
 
   '@rtsao/scc@1.1.0': {}
 
-  '@sideway/address@4.1.5':
-    dependencies:
-      '@hapi/hoek': 9.3.0
-
-  '@sideway/formula@3.0.1': {}
-
-  '@sideway/pinpoint@2.0.0': {}
-
   '@sinclair/typebox@0.27.8': {}
 
   '@sinonjs/commons@3.0.1':
@@ -7071,7 +7033,7 @@ snapshots:
       bson: 6.10.3
       express: 4.21.2
 
-  '@sliit-foss/zelebrate@0.1.0-blizzard.2(express@4.21.2)':
+  '@sliit-foss/zelebrate@0.1.0-blizzard.6(express@4.21.2)':
     dependencies:
       escape-html: 1.0.3
       express: 4.21.2
@@ -7960,12 +7922,6 @@ snapshots:
   camelcase@6.3.0: {}
 
   caniuse-lite@1.0.30001707: {}
-
-  celebrate@15.0.1:
-    dependencies:
-      escape-html: 1.0.3
-      joi: 17.13.3
-      lodash: 4.17.21
 
   chai@5.2.0:
     dependencies:
@@ -9741,14 +9697,6 @@ snapshots:
       - ts-node
 
   jiti@2.4.2: {}
-
-  joi@17.13.3:
-    dependencies:
-      '@hapi/hoek': 9.3.0
-      '@hapi/topo': 5.1.0
-      '@sideway/address': 4.1.5
-      '@sideway/formula': 3.0.1
-      '@sideway/pinpoint': 2.0.0
 
   js-sdsl@4.4.2: {}
 

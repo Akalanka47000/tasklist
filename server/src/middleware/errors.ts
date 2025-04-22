@@ -1,5 +1,5 @@
 import { moduleLogger } from '@sliit-foss/module-logger';
-import { isCelebrateError } from 'celebrate';
+import { isZelebrateError } from '@sliit-foss/zelebrate';
 
 const logger = moduleLogger('Error-handler');
 
@@ -11,9 +11,9 @@ const logger = moduleLogger('Error-handler');
  */
 // eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
 export const errorHandler = (err, _req, res, next) => {
-  if (isCelebrateError(err)) {
-    for (const [, value] of err.details.entries() as any) {
-      const message = value.details[0].message;
+  if (isZelebrateError(err)) {
+    for (const [, zodErr] of err.details.entries()) {
+      const message = zodErr.pretty();
       if (!res.errorLogged) logger.error(err.message, { details: message });
       return res.status(422).json({ message });
     }

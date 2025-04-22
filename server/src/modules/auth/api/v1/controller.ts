@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import { tracedAsyncHandler } from '@sliit-foss/functions';
-import { celebrate, Segments } from 'celebrate';
+import { Segments, zelebrate } from '@sliit-foss/zelebrate';
 import { protect, toSuccess } from '@/middleware';
 import { clearTokenCookies, setTokenCookies } from '../../utils/cookie';
 import { loginSchema, registerSchema } from './schema';
@@ -10,7 +10,7 @@ const auth = express.Router();
 
 auth.post(
   '/login',
-  celebrate({ [Segments.BODY]: loginSchema }),
+  zelebrate({ [Segments.BODY]: loginSchema }),
   tracedAsyncHandler(async function login(req: Request, res: Response) {
     const { user, access_token, refresh_token } = await service.login(req.body);
     setTokenCookies(res, access_token, refresh_token);
@@ -20,7 +20,7 @@ auth.post(
 
 auth.post(
   '/register',
-  celebrate({ [Segments.BODY]: registerSchema }),
+  zelebrate({ [Segments.BODY]: registerSchema }),
   tracedAsyncHandler(async function register(req: Request, res: Response) {
     const { user, access_token, refresh_token } = await service.register(req.body, req.user);
     setTokenCookies(res, access_token, refresh_token);

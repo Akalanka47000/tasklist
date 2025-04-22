@@ -1,3 +1,3 @@
 export * from './express';
-export * from './joi';
+export * from './zod';
 export * from './redis';

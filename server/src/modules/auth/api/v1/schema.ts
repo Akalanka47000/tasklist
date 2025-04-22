@@ -1,21 +1,15 @@
 import { regex } from '@shared/constants';
-import { Joi } from 'celebrate';
+import { z } from '@sliit-foss/zelebrate';
 
-export const loginSchema = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.string().required()
+export const loginSchema = z.object({
+  email: z.string().email(),
+  password: z.string()
 });
 
-export const registerSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().email().required(),
-  password: Joi.string()
-    .regex(regex.password)
-    .error((errors) =>
-      errors.map((err) => {
-        if (err.code === 'string.pattern.base')
-          err.message = `Password should have at least one lowercase letter, one uppercase letter, one number and one special character and should be at least 8 characters long`;
-        return err;
-      })
-    )
+export const registerSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  password: z.string().regex(regex.password, {
+    message: `Password should have at least one lowercase letter, one uppercase letter, one number and one special character and should be at least 8 characters long`
+  })
 });
