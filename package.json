@@ -35,7 +35,7 @@
     "eslint-config-custom": "workspace:*",
     "lefthook": "1.5.5",
     "prettier": "3.5.2",
-    "turbo": "1.11.3"
+    "turbo": "2.5.0"
   },
   "packageManager": "pnpm@9.6.0"
 }
