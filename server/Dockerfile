@@ -18,6 +18,8 @@ FROM node:18-alpine as runner
 
 WORKDIR /app
 
+ENV NODE_ENV production
+
 RUN npm i -g pnpm@9.6.0
 
 COPY --from=cleaner /app/out/full/ .

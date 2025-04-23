@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "@sliit-foss/zelebrate": "1.1.0",
+    "esbuild": "0.17.5",
+    "esbuild-plugin-glob": "2.2.1",
     "lodash": "4.17.21"
   },
   "devDependencies": {
@@ -29,8 +31,6 @@
     "@types/tasklist": "workspace:*",
     "@typescript-eslint/eslint-plugin": "6.16.0",
     "@typescript-eslint/parser": "6.16.0",
-    "esbuild": "0.17.5",
-    "esbuild-plugin-glob": "2.2.1",
     "eslint": "8.33.0",
     "eslint-config-custom": "workspace:*",
     "lefthook": "1.5.5",

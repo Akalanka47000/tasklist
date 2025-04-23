@@ -17,12 +17,13 @@
   },
   "dependencies": {
     "@shared/constants": "workspace:*",
+    "@sliit-foss/clusterizer": "2.0.1",
     "@sliit-foss/express-http-context": "2.0.0",
     "@sliit-foss/functions": "3.1.0",
     "@sliit-foss/http-logger": "2.0.0",
     "@sliit-foss/module-logger": "2.0.0",
     "@sliit-foss/mongoose-aggregate-paginate-v2": "3.0.0",
-    "@sliit-foss/mongoose-audit": "1.0.2",
+    "@sliit-foss/mongoose-audit": "1.0.4",
     "@sliit-foss/mongoose-filter-query": "7.0.3",
     "apicache": "1.6.3",
     "bcryptjs": "2.4.3",
@@ -49,7 +50,7 @@
     "request-ip": "3.3.0"
   },
   "devDependencies": {
-    "@sliit-foss/actions-exec-wrapper": "1.1.2",
+    "@sliit-foss/actions-exec-wrapper": "2.0.0",
     "@types/apicache": "1.6.6",
     "@types/bcryptjs": "2.4.6",
     "@types/callsite": "1.0.34",
