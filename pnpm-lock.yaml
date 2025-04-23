@@ -20,6 +20,12 @@ importers:
       lodash:
         specifier: 4.17.21
         version: 4.17.21
+      tscpaths:
+        specifier: 0.0.9
+        version: 0.0.9
+      turbo:
+        specifier: 2.5.0
+        version: 2.5.0
     devDependencies:
       '@commitlint/cli':
         specifier: 17.4.2
@@ -57,9 +63,6 @@ importers:
       prettier:
         specifier: 3.5.2
         version: 3.5.2
-      turbo:
-        specifier: 2.5.0
-        version: 2.5.0
 
   client:
     dependencies:
@@ -358,9 +361,6 @@ importers:
       ts-jest:
         specifier: 29.3.0
         version: 29.3.0(@babel/core@7.26.10)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.10))(esbuild@0.17.5)(jest@29.7.0(@types/node@22.13.13)(ts-node@10.9.2(@swc/core@1.11.13)(@types/node@22.13.13)(typescript@5.8.3)))(typescript@5.8.3)
-      tscpaths:
-        specifier: ^0.0.9
-        version: 0.0.9
       tsx:
         specifier: 4.19.3
         version: 4.19.3

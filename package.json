@@ -20,7 +20,9 @@
     "@sliit-foss/zelebrate": "1.1.0",
     "esbuild": "0.17.5",
     "esbuild-plugin-glob": "2.2.1",
-    "lodash": "4.17.21"
+    "lodash": "4.17.21",
+    "tscpaths": "0.0.9",
+    "turbo": "2.5.0"
   },
   "devDependencies": {
     "@commitlint/cli": "17.4.2",
@@ -34,8 +36,7 @@
     "eslint": "8.33.0",
     "eslint-config-custom": "workspace:*",
     "lefthook": "1.5.5",
-    "prettier": "3.5.2",
-    "turbo": "2.5.0"
+    "prettier": "3.5.2"
   },
   "packageManager": "pnpm@9.6.0"
 }
